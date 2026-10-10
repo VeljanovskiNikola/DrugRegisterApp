@@ -1,0 +1,1888 @@
+{
+  "sourceLanguage" : "mk",
+  "strings" : {
+    "%lld expire within 30 days" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld истекува за 30 дена"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld истекуваат за 30 дена"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld expired" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld истечен"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld истечени"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld packs" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld пакување"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld пакувања"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld results" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld резултат"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld резултати"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "About" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За апликацијата"
+          }
+        }
+      }
+    },
+    "Active ingredient" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активна супстанција"
+          }
+        }
+      }
+    },
+    "Add to favorites" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додади во омилени"
+          }
+        }
+      }
+    },
+    "Add to my medicines" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додај во мои лекови"
+          }
+        }
+      }
+    },
+    "Added to my medicines" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додадено во мои лекови"
+          }
+        }
+      }
+    },
+    "Alimentary tract and metabolism" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дигестивен тракт и метаболизам"
+          }
+        }
+      }
+    },
+    "All groups" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сите групи"
+          }
+        }
+      }
+    },
+    "Allow camera access in Settings, or type the number under the barcode." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозволете пристап до камерата во Поставки или внесете го бројот под баркодот."
+          }
+        }
+      }
+    },
+    "Anti-infectives for systemic use" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Антиинфективни лекови за системска употреба"
+          }
+        }
+      }
+    },
+    "Antineoplastic and immunomodulating agents" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Антинеопластични и имуномодулаторни лекови"
+          }
+        }
+      }
+    },
+    "Antiparasitic products" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Антипаразитски производи"
+          }
+        }
+      }
+    },
+    "App version" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Верзија на апликацијата"
+          }
+        }
+      }
+    },
+    "Apply" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примени"
+          }
+        }
+      }
+    },
+    "ATC code" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "АТЦ код"
+          }
+        }
+      }
+    },
+    "ATC group" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "АТЦ група"
+          }
+        }
+      }
+    },
+    "Authorization issued" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Датум на решение"
+          }
+        }
+      }
+    },
+    "Barcode %@" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Баркод %@"
+          }
+        }
+      }
+    },
+    "Biosimilar" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Биосличен"
+          }
+        }
+      }
+    },
+    "Blood and blood forming organs" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Крв и крвотворни органи"
+          }
+        }
+      }
+    },
+    "Braille on package" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брајово писмо на пакувањето"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откажи"
+          }
+        }
+      }
+    },
+    "Cardiovascular system" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кардиоваскуларен систем"
+          }
+        }
+      }
+    },
+    "Check the package or ask a pharmacist." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете го пакувањето или прашајте фармацевт."
+          }
+        }
+      }
+    },
+    "Check the spelling or try a new search." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете го правописот или пребарајте нешто друго."
+          }
+        }
+      }
+    },
+    "Choose" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери"
+          }
+        }
+      }
+    },
+    "Clear" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избриши"
+          }
+        }
+      }
+    },
+    "Clear barcode" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избриши баркод"
+          }
+        }
+      }
+    },
+    "Composition" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Состав"
+          }
+        }
+      }
+    },
+    "Data" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Податоци"
+          }
+        }
+      }
+    },
+    "Data from the official register" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Податоци од официјалниот регистар"
+          }
+        }
+      }
+    },
+    "Data source" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Извор на податоци"
+          }
+        }
+      }
+    },
+    "Decision valid until" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Решението важи до"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избриши"
+          }
+        }
+      }
+    },
+    "Dermatologicals" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дерматолошки лекови"
+          }
+        }
+      }
+    },
+    "Dispensing" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начин на издавање"
+          }
+        }
+      }
+    },
+    "Dosage" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозирање"
+          }
+        }
+      }
+    },
+    "Drugs in the register" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекови во регистарот"
+          }
+        }
+      }
+    },
+    "Drugs on the positive list are covered by the Health Insurance Fund." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лековите на позитивната листа ги покрива Фондот за здравствено осигурување."
+          }
+        }
+      }
+    },
+    "EAN" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EAN код"
+          }
+        }
+      }
+    },
+    "EAN number" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EAN број"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уреди"
+          }
+        }
+      }
+    },
+    "Edit medicine" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уреди лек"
+          }
+        }
+      }
+    },
+    "Expired" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Истечени"
+          }
+        }
+      }
+    },
+    "Expired %lld days ago" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Истечен пред %lld ден"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Истечен пред %lld дена"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Expired %lld months ago" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Истечен пред %lld месец"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Истечен пред %lld месеци"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Expired %lld weeks ago" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Истечен пред %lld недела"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Истечен пред %lld недели"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Expires today" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Истекува денес"
+          }
+        }
+      }
+    },
+    "Expires within 30 days" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Истекуваат за 30 дена"
+          }
+        }
+      }
+    },
+    "Expiry date" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рок на траење"
+          }
+        }
+      }
+    },
+    "Expiry date: %@" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рок на траење: %@"
+          }
+        }
+      }
+    },
+    "Expiry reminders" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потсетници за рок на траење"
+          }
+        }
+      }
+    },
+    "Extended ATC code" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проширен АТЦ код"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Омилени"
+          }
+        }
+      }
+    },
+    "Filters" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Филтри"
+          }
+        }
+      }
+    },
+    "Find a drug by the barcode on its package" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пронајдете лек според баркодот на пакувањето"
+          }
+        }
+      }
+    },
+    "Find a drug in Search and tap “Add to my medicines”. You will see which packs expire first and get a reminder before they do." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пронајдете лек во Пребарај и допрете „Додај во мои лекови“. Ќе видите кои пакувања први истекуваат и ќе добиете потсетник пред тоа."
+          }
+        }
+      }
+    },
+    "For information only. This app shows data from the official drug register and does not replace advice from a doctor or pharmacist." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Податоците се од информативен карактер од официјалниот регистар на лекови. Ова не е медицински совет. Прашајте лекар или фармацевт."
+          }
+        }
+      }
+    },
+    "For My medicines: 30 days and 7 days before the expiry date and on the day itself, at 09:00." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За „Мои лекови“: 30 и 7 дена пред рокот на траење и на самиот ден, во 09:00 часот."
+          }
+        }
+      }
+    },
+    "Fund code" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фондовска шифра"
+          }
+        }
+      }
+    },
+    "Generic" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Генерички"
+          }
+        }
+      }
+    },
+    "Generics" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Генерички лекови"
+          }
+        }
+      }
+    },
+    "Genito-urinary system and sex hormones" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Урогенитален систем и полови хормони"
+          }
+        }
+      }
+    },
+    "Go to Search" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оди на Пребарај"
+          }
+        }
+      }
+    },
+    "Has variations" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Има варијации"
+          }
+        }
+      }
+    },
+    "Hospital" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Болнички"
+          }
+        }
+      }
+    },
+    "Hospital only" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Само за болничка употреба"
+          }
+        }
+      }
+    },
+    "I know the exact day" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Го знам точниот ден"
+          }
+        }
+      }
+    },
+    "In %lld days" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "За %lld ден"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "За %lld дена"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "In %lld months" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "За %lld месец"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "За %lld месеци"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "In %lld weeks" : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "За %lld недела"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "За %lld недели"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Information from the public drug register of North Macedonia. It is not medical advice. Ask a doctor or a pharmacist." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информации од јавниот регистар на лекови на Северна Македонија. Ова не е медицински совет. Прашајте лекар или фармацевт."
+          }
+        }
+      }
+    },
+    "Label and packaging" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налепница и пакување"
+          }
+        }
+      }
+    },
+    "Label and packaging (PDF)" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налепница и пакување (PDF)"
+          }
+        }
+      }
+    },
+    "Last data update" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последно ажурирање"
+          }
+        }
+      }
+    },
+    "Later" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подоцна"
+          }
+        }
+      }
+    },
+    "Lekovi" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекови"
+          }
+        }
+      }
+    },
+    "Loading document…" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документот се вчитува…"
+          }
+        }
+      }
+    },
+    "Manufacturer" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Производител"
+          }
+        }
+      }
+    },
+    "Manufacturing sites" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Места на производство"
+          }
+        }
+      }
+    },
+    "Marketing authorization holder" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Носител на одобрение"
+          }
+        }
+      }
+    },
+    "Month" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Месец"
+          }
+        }
+      }
+    },
+    "More details" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повеќе детали"
+          }
+        }
+      }
+    },
+    "Musculo-skeletal system" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мускулно-скелетен систем"
+          }
+        }
+      }
+    },
+    "My medicines" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мои лекови"
+          }
+        }
+      }
+    },
+    "Nervous system" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нервен систем"
+          }
+        }
+      }
+    },
+    "No" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не"
+          }
+        }
+      }
+    },
+    "No connection. This is the information saved with your medicine." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нема интернет. Ова се податоците зачувани со вашиот лек."
+          }
+        }
+      }
+    },
+    "No drug with this barcode" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нема лек со овој баркод"
+          }
+        }
+      }
+    },
+    "No drugs found" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не се пронајдени лекови"
+          }
+        }
+      }
+    },
+    "No favorites yet" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сè уште нема омилени"
+          }
+        }
+      }
+    },
+    "No medicines yet" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сè уште нема лекови"
+          }
+        }
+      }
+    },
+    "No price set" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нема цена"
+          }
+        }
+      }
+    },
+    "No results for “%@”" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нема резултати за „%@“"
+          }
+        }
+      }
+    },
+    "Not available" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е достапно"
+          }
+        }
+      }
+    },
+    "Note" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Белешка"
+          }
+        }
+      }
+    },
+    "Nothing expires in the next 30 days" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ништо не истекува во наредните 30 дена"
+          }
+        }
+      }
+    },
+    "Notifications" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Известувања"
+          }
+        }
+      }
+    },
+    "Notifications for this app are turned off in iOS Settings." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Известувањата за оваа апликација се исклучени во поставките на iOS."
+          }
+        }
+      }
+    },
+    "On prescription" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На рецепт"
+          }
+        }
+      }
+    },
+    "Open iOS Settings" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори ги поставките на iOS"
+          }
+        }
+      }
+    },
+    "Open leaflet (PDF)" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори упатство (PDF)"
+          }
+        }
+      }
+    },
+    "Open on the official site" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори на официјалната страница"
+          }
+        }
+      }
+    },
+    "Open Settings" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори Поставки"
+          }
+        }
+      }
+    },
+    "Open SmPC (PDF)" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори збирен извештај (PDF)"
+          }
+        }
+      }
+    },
+    "Opened" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отворено"
+          }
+        }
+      }
+    },
+    "Opened on" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отворено на"
+          }
+        }
+      }
+    },
+    "Optional. It stays on this device and is never shown in reminders." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е задолжително. Останува само на овој уред и никогаш не се прикажува во потсетниците."
+          }
+        }
+      }
+    },
+    "Or type the number under the barcode." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Или внесете го бројот под баркодот."
+          }
+        }
+      }
+    },
+    "Original" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оригинален"
+          }
+        }
+      }
+    },
+    "OTC" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без рецепт"
+          }
+        }
+      }
+    },
+    "Other" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Друго"
+          }
+        }
+      }
+    },
+    "Over the counter" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без рецепт"
+          }
+        }
+      }
+    },
+    "Over the counter, general sale" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без рецепт, слободна продажба"
+          }
+        }
+      }
+    },
+    "Over the counter, pharmacy" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без рецепт, во аптека"
+          }
+        }
+      }
+    },
+    "Overview" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преглед"
+          }
+        }
+      }
+    },
+    "Pack size" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пакување"
+          }
+        }
+      }
+    },
+    "Packs: %lld" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пакувања: %lld"
+          }
+        }
+      }
+    },
+    "Patient leaflet" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Упатство за употреба"
+          }
+        }
+      }
+    },
+    "Point the camera at the barcode on the package." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Насочете ја камерата кон баркодот на пакувањето."
+          }
+        }
+      }
+    },
+    "Positive list" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позитивна листа"
+          }
+        }
+      }
+    },
+    "Positive list only" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Само позитивна листа"
+          }
+        }
+      }
+    },
+    "Prescription" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На рецепт"
+          }
+        }
+      }
+    },
+    "Prescription type" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начин на издавање"
+          }
+        }
+      }
+    },
+    "Prices" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цени"
+          }
+        }
+      }
+    },
+    "Product type" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вид на лек"
+          }
+        }
+      }
+    },
+    "Quick filters" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брзи филтри"
+          }
+        }
+      }
+    },
+    "Recent searches" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неодамнешни пребарувања"
+          }
+        }
+      }
+    },
+    "Reference" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Референтна цена"
+          }
+        }
+      }
+    },
+    "Registration number" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Број на решение"
+          }
+        }
+      }
+    },
+    "Reminders are off. Allow notifications to be reminded before a pack expires." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потсетниците се исклучени. Дозволете известувања за да добиете потсетник пред да истече пакувањето."
+          }
+        }
+      }
+    },
+    "Remove from favorites" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отстрани од омилени"
+          }
+        }
+      }
+    },
+    "Renewal" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Датум на обнова"
+          }
+        }
+      }
+    },
+    "Reset" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ресетирај"
+          }
+        }
+      }
+    },
+    "Respiratory system" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Респираторен систем"
+          }
+        }
+      }
+    },
+    "Retail, with VAT" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малопродажна, со ДДВ"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зачувај"
+          }
+        }
+      }
+    },
+    "Scan again" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скенирај повторно"
+          }
+        }
+      }
+    },
+    "Scan barcode" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скенирај баркод"
+          }
+        }
+      }
+    },
+    "Scanning is not available" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скенирањето не е достапно"
+          }
+        }
+      }
+    },
+    "Search" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пребарај"
+          }
+        }
+      }
+    },
+    "Search by name or active ingredient" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пребарај по име или активна супстанција"
+          }
+        }
+      }
+    },
+    "Sensory organs" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сетилни органи"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поставки"
+          }
+        }
+      }
+    },
+    "Share" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сподели"
+          }
+        }
+      }
+    },
+    "Something went wrong" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Се случи грешка"
+          }
+        }
+      }
+    },
+    "Something went wrong (error %lld)." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Се случи грешка (грешка %lld)."
+          }
+        }
+      }
+    },
+    "Special warning" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посебни предупредувања"
+          }
+        }
+      }
+    },
+    "Specialist recommendation" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Препорака од специјалист"
+          }
+        }
+      }
+    },
+    "Summary of product characteristics" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Збирен извештај за особините на лекот"
+          }
+        }
+      }
+    },
+    "Systemic hormonal preparations" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системски хормонски препарати"
+          }
+        }
+      }
+    },
+    "Tap the heart on a drug to save it here. Saved drugs also open without internet." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допрете го срцето кај лекот за да го зачувате тука. Зачуваните лекови се отвораат и без интернет."
+          }
+        }
+      }
+    },
+    "The barcode %@ is not in the register." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Баркодот %@ не е во регистарот."
+          }
+        }
+      }
+    },
+    "The medicine could not be deleted." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекот не можеше да се избрише."
+          }
+        }
+      }
+    },
+    "The medicine could not be saved." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекот не можеше да се зачува."
+          }
+        }
+      }
+    },
+    "The request URL is not valid." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Адресата на барањето не е валидна."
+          }
+        }
+      }
+    },
+    "The server sent an unexpected response." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Серверот испрати неочекуван одговор."
+          }
+        }
+      }
+    },
+    "This document could not be opened." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документот не може да се отвори."
+          }
+        }
+      }
+    },
+    "This drug is no longer in the register. This is the information saved with your medicine." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Овој лек повеќе не е во регистарот. Ова се податоците зачувани со вашиот лек."
+          }
+        }
+      }
+    },
+    "Too many requests. Please try again soon." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Премногу барања. Обидете се повторно наскоро."
+          }
+        }
+      }
+    },
+    "Too many requests. Try again in %lld seconds." : {
+      "localizations" : {
+        "mk" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Премногу барања. Обидете се повторно за %lld секунда."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Премногу барања. Обидете се повторно за %lld секунди."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Try Again" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обиди се повторно"
+          }
+        }
+      }
+    },
+    "Try changing the filters." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обидете се да ги промените филтрите."
+          }
+        }
+      }
+    },
+    "Updated %@ · %lld drugs" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ажурирано %1$@ · лекови: %2$lld"
+          }
+        }
+      }
+    },
+    "Use the date printed on the package, for example EXP 05/2027. Month and year count as the last day of that month." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Внесете го датумот отпечатен на пакувањето, на пр. EXP 05/2027. Месец и година значат последниот ден од тој месец."
+          }
+        }
+      }
+    },
+    "Various" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разно"
+          }
+        }
+      }
+    },
+    "We could not read the server response." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не можевме да го прочитаме одговорот од серверот."
+          }
+        }
+      }
+    },
+    "Wholesale, without VAT" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Големопродажна, без ДДВ"
+          }
+        }
+      }
+    },
+    "Within 3 months" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Во наредните 3 месеци"
+          }
+        }
+      }
+    },
+    "Year" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Година"
+          }
+        }
+      }
+    },
+    "Yes" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Да"
+          }
+        }
+      }
+    },
+    "Your medicines could not be loaded." : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вашите лекови не можеа да се вчитаат."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
