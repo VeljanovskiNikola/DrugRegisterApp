@@ -10,6 +10,9 @@ final class SettingsViewModel {
 
     /// The switch. Bound by the view, then applied with `applyReminderChoice()`.
     var remindersEnabled: Bool
+    /// The time picker, as a `Date` because `DatePicker` needs one. Only hour and minute count.
+    /// Bound by the view, then applied with `applyReminderTime()`.
+    var reminderTime: Date
     /// What iOS allows. `nil` until checked.
     private(set) var permission: ReminderPermission?
 
@@ -20,6 +23,20 @@ final class SettingsViewModel {
         self.service = service
         self.medicines = medicines
         remindersEnabled = medicines.settings.isEnabled
+        let time = medicines.settings.time
+        reminderTime = medicines.calendar.date(
+            bySettingHour: time.hour,
+            minute: time.minute,
+            second: 0,
+            of: medicines.now()
+        ) ?? medicines.now()
+    }
+
+    /// "09:00", in the app's language, for the footer.
+    var reminderTimeText: String {
+        let calendar = medicines.calendar
+        let style = Date.FormatStyle(date: .omitted, time: .shortened, locale: .app, calendar: calendar, timeZone: calendar.timeZone)
+        return reminderTime.formatted(style)
     }
 
     /// On here, but iOS blocks notifications. The screen points to iOS Settings.
@@ -51,6 +68,15 @@ final class SettingsViewModel {
             _ = await medicines.scheduler.requestPermission()
         }
         await refreshPermission()
+        await medicines.syncReminders()
+    }
+
+    /// Saves the picked time and moves every pending reminder to it.
+    func applyReminderTime() async {
+        let components = medicines.calendar.dateComponents([.hour, .minute], from: reminderTime)
+        let time = ReminderTime(hour: components.hour ?? 0, minute: components.minute ?? 0)
+        guard time != medicines.settings.time else { return }
+        medicines.settings.time = time
         await medicines.syncReminders()
     }
 }

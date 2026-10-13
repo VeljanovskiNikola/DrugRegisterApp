@@ -16,6 +16,47 @@ struct ReminderSettingsTests {
     }
 
     @Test
+    func timeIsNineUntilTheUserChangesIt() {
+        let settings = ReminderSettings.test()
+
+        #expect(settings.time == .standard)
+        #expect(settings.time == ReminderTime(hour: 9, minute: 0))
+
+        settings.time = ReminderTime(hour: 7, minute: 45)
+        #expect(settings.time == ReminderTime(hour: 7, minute: 45))
+    }
+
+    @Test
+    func badStoredTimeFallsBackToNine() {
+        let settings = ReminderSettings.test()
+        UserDefaults(suiteName: settings.suiteName)?.set(5000, forKey: settings.timeKey)
+
+        #expect(settings.time == .standard)
+    }
+
+    @Test
+    func minutesAfterMidnightRoundTrip() {
+        #expect(ReminderTime(hour: 18, minute: 30).minutesAfterMidnight == 1110)
+        #expect(ReminderTime(minutesAfterMidnight: 1110) == ReminderTime(hour: 18, minute: 30))
+        #expect(ReminderTime(minutesAfterMidnight: -1) == nil)
+        #expect(ReminderTime(minutesAfterMidnight: 1440) == nil)
+    }
+
+    @Test
+    func syncUsesTheSavedTime() async {
+        let scheduler = StubReminderScheduler()
+        let settings = ReminderSettings.test()
+        settings.time = ReminderTime(hour: 18, minute: 30)
+        let services = makeServices(medicines: [.make(expiry: day(2027, 1, 31))], scheduler: scheduler, settings: settings)
+
+        await services.syncReminders()
+
+        let scheduled = await scheduler.scheduled
+        #expect(scheduled.count == 3)
+        #expect(scheduled.allSatisfy { $0.components.hour == 18 && $0.components.minute == 30 })
+    }
+
+    @Test
     func turnedOffSyncRemovesEveryReminder() async {
         let scheduler = StubReminderScheduler()
         let services = makeServices(

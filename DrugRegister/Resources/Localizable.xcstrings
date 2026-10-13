@@ -765,12 +765,12 @@
         }
       }
     },
-    "For My medicines: 30 days and 7 days before the expiry date and on the day itself, at 09:00." : {
+    "For My medicines: 30 days and 7 days before the expiry date and on the day itself, at %@." : {
       "localizations" : {
         "mk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "За „Мои лекови“: 30 и 7 дена пред рокот на траење и на самиот ден, во 09:00 часот."
+            "value" : "За „Мои лекови“: 30 и 7 дена пред рокот на траење и на самиот ден, во %@ часот."
           }
         }
       }
@@ -1527,6 +1527,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Број на решение"
+          }
+        }
+      }
+    },
+    "Reminder time" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Време на потсетниците"
           }
         }
       }

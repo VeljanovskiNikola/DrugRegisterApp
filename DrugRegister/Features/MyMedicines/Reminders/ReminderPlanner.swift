@@ -6,16 +6,17 @@ enum ReminderPlanner {
     static let limit = 64
     /// Days before the expiry day. 0 is the expiry day itself.
     static let daysBefore = [30, 7, 0]
-    /// Local time. Early enough to see it, late enough not to wake anyone.
-    static let hour = 9
     static let idPrefix = "medicine-"
 
     /// Future reminders only, soonest first, at most `limit`.
     /// Reminders past the limit are scheduled later, when earlier ones have fired.
-    static func reminders(for medicines: [Medicine], now: Date, calendar: Calendar) -> [Reminder] {
+    /// `time` is the user's choice in Settings, `ReminderTime.standard` (09:00) unless changed.
+    static func reminders(for medicines: [Medicine], at time: ReminderTime, now: Date, calendar: Calendar) -> [Reminder] {
         medicines
             .flatMap { medicine in
-                daysBefore.compactMap { offset in reminder(for: medicine, daysBefore: offset, calendar: calendar) }
+                daysBefore.compactMap { offset in
+                    reminder(for: medicine, daysBefore: offset, at: time, calendar: calendar)
+                }
             }
             .filter { $0.fireDate > now }
             .sorted { ($0.fireDate, $0.id) < ($1.fireDate, $1.id) }
@@ -23,11 +24,16 @@ enum ReminderPlanner {
             .map { $0 }
     }
 
-    private static func reminder(for medicine: Medicine, daysBefore offset: Int, calendar: Calendar) -> Reminder? {
+    private static func reminder(
+        for medicine: Medicine,
+        daysBefore offset: Int,
+        at time: ReminderTime,
+        calendar: Calendar
+    ) -> Reminder? {
         let day = medicine.expiry.day.adding(days: -offset, calendar: calendar)
         var components = day.components
-        components.hour = hour
-        components.minute = 0
+        components.hour = time.hour
+        components.minute = time.minute
         guard let fireDate = calendar.date(from: components) else { return nil }
 
         return Reminder(

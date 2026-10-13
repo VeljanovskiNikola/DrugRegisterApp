@@ -6,8 +6,12 @@ struct ReminderPlannerTests {
 
     private let calendar = Calendar.test
 
-    private func reminders(_ medicines: [Medicine], now: Date = moment(2026, 10, 10)) -> [Reminder] {
-        ReminderPlanner.reminders(for: medicines, now: now, calendar: calendar)
+    private func reminders(
+        _ medicines: [Medicine],
+        at time: ReminderTime = .standard,
+        now: Date = moment(2026, 10, 10)
+    ) -> [Reminder] {
+        ReminderPlanner.reminders(for: medicines, at: time, now: now, calendar: calendar)
     }
 
     @Test
@@ -20,6 +24,25 @@ struct ReminderPlannerTests {
             moment(2027, 1, 31, hour: 9),
         ])
         #expect(result.allSatisfy { $0.components.hour == 9 && $0.components.minute == 0 })
+    }
+
+    @Test
+    func remindersFireAtTheChosenTime() {
+        let result = reminders([Medicine.make(expiry: day(2027, 1, 31))], at: ReminderTime(hour: 18, minute: 30))
+
+        #expect(result.allSatisfy { $0.components.hour == 18 && $0.components.minute == 30 })
+        #expect(result.last?.fireDate == Calendar.test.date(
+            from: DateComponents(year: 2027, month: 1, day: 31, hour: 18, minute: 30)
+        ))
+    }
+
+    /// A later time keeps the expiry-day reminder alive for longer that day.
+    @Test
+    func expiryDayReminderFollowsTheChosenTime() {
+        let medicine = Medicine.make(expiry: day(2026, 10, 10))
+        let evening = ReminderTime(hour: 20, minute: 0)
+
+        #expect(reminders([medicine], at: evening, now: moment(2026, 10, 10, hour: 12)).count == 1)
     }
 
     @Test

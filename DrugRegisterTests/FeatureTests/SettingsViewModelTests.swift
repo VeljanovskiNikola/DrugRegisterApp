@@ -75,6 +75,62 @@ struct SettingsViewModelTests {
     }
 
     @Test
+    func timePickerStartsFromTheSavedTime() {
+        let settings = ReminderSettings.test()
+        settings.time = ReminderTime(hour: 7, minute: 45)
+        let viewModel = SettingsViewModel(service: StubDrugService(), medicines: makeServices(settings: settings))
+
+        let components = Calendar.test.dateComponents([.hour, .minute], from: viewModel.reminderTime)
+        #expect(components.hour == 7)
+        #expect(components.minute == 45)
+    }
+
+    @Test
+    func changingTheTimeSavesItAndMovesTheReminders() async {
+        let scheduler = StubReminderScheduler()
+        let settings = ReminderSettings.test()
+        let services = makeServices(
+            medicines: [.make(expiry: day(2027, 1, 31))],
+            scheduler: scheduler,
+            settings: settings
+        )
+        let viewModel = SettingsViewModel(service: StubDrugService(), medicines: services)
+
+        viewModel.reminderTime = Calendar.test.date(
+            from: DateComponents(year: 2026, month: 10, day: 10, hour: 18, minute: 30)
+        ) ?? .distantPast
+        await viewModel.applyReminderTime()
+
+        #expect(settings.time == ReminderTime(hour: 18, minute: 30))
+        let scheduled = await scheduler.scheduled
+        #expect(scheduled.count == 3)
+        #expect(scheduled.allSatisfy { $0.components.hour == 18 && $0.components.minute == 30 })
+    }
+
+    @Test
+    func sameTimeDoesNotReschedule() async {
+        let scheduler = StubReminderScheduler()
+        let viewModel = SettingsViewModel(
+            service: StubDrugService(),
+            medicines: makeServices(medicines: [.make(expiry: day(2027, 1, 31))], scheduler: scheduler)
+        )
+
+        await viewModel.applyReminderTime()   // still 09:00
+
+        #expect(await scheduler.replaceCount == 0)
+    }
+
+    @Test
+    func footerShowsTheChosenTime() {
+        let settings = ReminderSettings.test()
+        settings.time = ReminderTime(hour: 18, minute: 30)
+        let viewModel = SettingsViewModel(service: StubDrugService(), medicines: makeServices(settings: settings))
+
+        #expect(viewModel.reminderTimeText.contains("18"))
+        #expect(viewModel.reminderTimeText.contains("30"))
+    }
+
+    @Test
     func turningOnAsksForPermissionAndSchedules() async {
         let scheduler = StubReminderScheduler(permission: .notDetermined)
         let settings = ReminderSettings.test(enabled: false)

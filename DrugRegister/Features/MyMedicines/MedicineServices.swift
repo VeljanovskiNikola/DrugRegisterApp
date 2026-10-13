@@ -37,7 +37,7 @@ struct MedicineServices: Sendable {
             return
         }
         guard let medicines = try? await repository.all() else { return }
-        let reminders = ReminderPlanner.reminders(for: medicines, now: now(), calendar: calendar)
+        let reminders = ReminderPlanner.reminders(for: medicines, at: settings.time, now: now(), calendar: calendar)
         await scheduler.replaceAll(with: reminders)
     }
 }

@@ -61,6 +61,9 @@ struct SettingsView: View {
         .onChange(of: viewModel.remindersEnabled) {
             Task { await viewModel.applyReminderChoice() }
         }
+        .onChange(of: viewModel.reminderTime) {
+            Task { await viewModel.applyReminderTime() }
+        }
     }
 
     private var reminders: some View {
@@ -68,6 +71,9 @@ struct SettingsView: View {
             @Bindable var viewModel = viewModel
             Toggle(isOn: $viewModel.remindersEnabled) {
                 Label("Expiry reminders", systemImage: "bell")
+            }
+            if viewModel.remindersEnabled {
+                DatePicker("Reminder time", selection: $viewModel.reminderTime, displayedComponents: .hourAndMinute)
             }
             if viewModel.remindersBlocked, let url = URL(string: UIApplication.openNotificationSettingsURLString) {
                 Button("Open iOS Settings") { openURL(url) }
@@ -78,7 +84,7 @@ struct SettingsView: View {
             if viewModel.remindersBlocked {
                 Text("Notifications for this app are turned off in iOS Settings.")
             } else {
-                Text("For My medicines: 30 days and 7 days before the expiry date and on the day itself, at 09:00.")
+                Text("For My medicines: 30 days and 7 days before the expiry date and on the day itself, at \(viewModel.reminderTimeText).")
             }
         }
     }

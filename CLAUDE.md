@@ -67,7 +67,7 @@ View → ViewModel → Service → APIClient
 - Dates are `CalendarDay` (year, month, day), never a `Date`, so a time zone cannot move them. Month and year mean the last day of that month.
 - Groups: expired (before today), within 30 days (today to today + 30, both included), within 3 months (calendar months), later. A pack is not expired on its expiry day.
 - Time is injected: `MedicineServices.now` and `.calendar`. Grouping, labels and reminders never read the real clock. Tests use `Calendar.test` and a fixed `now`.
-- Reminders go through the `ReminderScheduler` protocol. `ReminderPlanner` makes them: 30 days, 7 days and on the day, at 09:00, the 64 soonest only (the iOS limit). Every change replaces all pending reminders with the new plan, and so does the app becoming active. Permission is asked on the first save, never at launch.
+- Reminders go through the `ReminderScheduler` protocol. `ReminderPlanner` makes them: 30 days, 7 days and on the day, at the time set in Settings (`ReminderSettings.time`, 09:00 by default), the 64 soonest only (the iOS limit). Every change replaces all pending reminders with the new plan, and so does the app becoming active. Permission is asked on the first save, never at launch.
 - The Settings switch (`ReminderSettings`, on by default) turns reminders off without iOS Settings. Off means `syncReminders` schedules nothing and no permission is asked.
 - Notification text has only the drug name and the date. Notes are private: never log, print or put them in a notification.
 - Show dates and facts only. No "safe to use" or similar. Keep the line "Check the package or ask a pharmacist." on the list.
