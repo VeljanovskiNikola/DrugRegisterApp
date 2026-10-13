@@ -2,7 +2,7 @@ import Foundation
 
 /// The few drug fields a saved medicine keeps. The list works offline with them,
 /// and still works if the drug is later removed from the register.
-struct DrugSnapshot: Hashable, Codable, Sendable {
+struct DrugSnapshot: Identifiable, Hashable, Codable, Sendable {
     let id: String
     let nameLatin: String
     let nameCyrillic: String

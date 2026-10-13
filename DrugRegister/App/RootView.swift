@@ -19,7 +19,7 @@ struct RootView: View {
             .tag(AppTab.search)
 
             NavigationStack(path: $router.medicinesPath) {
-                MyMedicinesView(services: environment.medicineServices)
+                MyMedicinesView(services: environment.medicineServices, drugService: environment.drugService)
                     .drugDestinations()
             }
             .tabItem { Label("My medicines", systemImage: "cross.case") }

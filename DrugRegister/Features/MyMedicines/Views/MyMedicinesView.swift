@@ -6,12 +6,17 @@ struct MyMedicinesView: View {
     @Environment(\.openURL) private var openURL
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var viewModel: MyMedicinesViewModel
+    @State private var lookup: BarcodeLookupViewModel
     @State private var editing: Medicine?
+    /// The scanned drug the add form is open for.
+    @State private var adding: DrugSnapshot?
+    @State private var isScanning = false
     private let services: MedicineServices
 
-    init(services: MedicineServices) {
+    init(services: MedicineServices, drugService: any DrugService) {
         self.services = services
         _viewModel = State(initialValue: MyMedicinesViewModel(services: services))
+        _lookup = State(initialValue: BarcodeLookupViewModel(service: drugService))
     }
 
     var body: some View {
@@ -19,6 +24,16 @@ struct MyMedicinesView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.appBackground)
             .navigationTitle("My medicines")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isScanning = true
+                    } label: {
+                        Label("Add to my medicines", systemImage: "plus")
+                    }
+                    .disabled(lookup.isLooking)
+                }
+            }
             // Runs each time the tab appears, so medicines added from a detail screen show up.
             .task { await viewModel.load() }
             .safeAreaInset(edge: .bottom) { undoBanner }
@@ -46,6 +61,13 @@ struct MyMedicinesView: View {
                     }
                 )
             }
+            .modifier(AddByScan(
+                lookup: lookup,
+                isScanning: $isScanning,
+                adding: $adding,
+                services: services,
+                onSaved: { Task { await viewModel.load() } }
+            ))
     }
 
     @ViewBuilder
@@ -71,8 +93,11 @@ struct MyMedicinesView: View {
         } description: {
             Text("Find a drug in Search and tap “Add to my medicines”. You will see which packs expire first and get a reminder before they do.")
         } actions: {
-            Button("Go to Search") { router.showSearch() }
+            // Scanning the box is how most people add a pack at home.
+            Button("Scan a package") { isScanning = true }
                 .buttonStyle(.borderedProminent)
+            Button("Go to Search") { router.showSearch() }
+                .buttonStyle(.bordered)
         }
     }
 
@@ -213,21 +238,21 @@ struct MyMedicinesView: View {
 #if DEBUG
 #Preview("With data") {
     NavigationStack {
-        MyMedicinesView(services: .preview(medicines: Medicine.previewList))
+        MyMedicinesView(services: .preview(medicines: Medicine.previewList), drugService: StubDrugService.preview)
     }
     .environment(AppRouter())
 }
 
 #Preview("With expired items") {
     NavigationStack {
-        MyMedicinesView(services: .preview(medicines: Medicine.previewExpired, permission: .denied))
+        MyMedicinesView(services: .preview(medicines: Medicine.previewExpired, permission: .denied), drugService: StubDrugService.preview)
     }
     .environment(AppRouter())
 }
 
 #Preview("Empty") {
     NavigationStack {
-        MyMedicinesView(services: .preview(medicines: []))
+        MyMedicinesView(services: .preview(medicines: []), drugService: StubDrugService.preview)
     }
     .environment(AppRouter())
 }

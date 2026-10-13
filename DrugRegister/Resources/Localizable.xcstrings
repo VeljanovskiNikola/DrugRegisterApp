@@ -339,6 +339,16 @@
         }
       }
     },
+    "Choose the drug" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете го лекот"
+          }
+        }
+      }
+    },
     "Clear" : {
       "localizations" : {
         "mk" : {
@@ -1587,6 +1597,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Зачувај"
+          }
+        }
+      }
+    },
+    "Scan a package" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скенирај пакување"
           }
         }
       }
