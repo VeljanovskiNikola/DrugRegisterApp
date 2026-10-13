@@ -321,7 +321,12 @@ struct DrugSearchView: View {
                     Label("Clear barcode", systemImage: "xmark.circle.fill")
                         .labelStyle(.iconOnly)
                         .foregroundStyle(.appSecondaryText)
+                        .frame(width: .minTapSize, height: .minTapSize)
+                        .contentShape(.rect)
                 }
+                // The tap area reaches into the card's padding, so the card barely grows.
+                .padding(.vertical, -.spacingSmall)
+                .padding(.trailing, -.spacingSmall)
             }
             .cardStyle()
             .transition(barTransition)
@@ -363,8 +368,14 @@ struct DrugSearchView: View {
                     .accessibilityLabel(Text("Remove filter \(filter.title)"))
                     .transition(reduceMotion ? .opacity : .scale.combined(with: .opacity))
                 }
-                Button("Clear all") { viewModel.clearFilters() }
-                    .font(.appSubheadline)
+                Button {
+                    viewModel.clearFilters()
+                } label: {
+                    Text("Clear all")
+                        .font(.appSubheadline)
+                        .frame(minHeight: .minTapSize)
+                        .contentShape(.rect)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .transition(barTransition)

@@ -144,15 +144,25 @@ struct DrugDetailView: View {
                 .buttonStyle(.bordered)
                 .controlSize(.large)
             }
+            // Full-width rows, at least 44 pt tall, so the two small links are easy to tell apart.
             if let url = drug.documents.url(for: .label) {
-                Button("Label and packaging (PDF)") {
+                Button {
                     router.showDocument(DrugDocument(kind: .label, url: url))
+                } label: {
+                    linkRow("Label and packaging (PDF)")
                 }
-                .font(.appSubheadline)
             }
-            Link("Open on the official site", destination: drug.detailUrl)
-                .font(.appSubheadline)
+            Link(destination: drug.detailUrl) {
+                linkRow("Open on the official site")
+            }
         }
+    }
+
+    private func linkRow(_ title: LocalizedStringKey) -> some View {
+        Text(title)
+            .font(.appSubheadline)
+            .frame(maxWidth: .infinity, minHeight: .minTapSize, alignment: .leading)
+            .contentShape(.rect)
     }
 
     private var prices: some View {

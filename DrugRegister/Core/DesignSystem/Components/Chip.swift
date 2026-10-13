@@ -26,6 +26,7 @@ struct Chip: View {
             .foregroundStyle(.primary)
             .padding(.horizontal, .spacingMedium)
             .padding(.vertical, .spacingSmall)
+            .frame(minHeight: .minTapSize)
             .background(.appCardBackground, in: .capsule)
             .overlay(Capsule().strokeBorder(.appSeparator))
         }

@@ -13,4 +13,7 @@ extension CGFloat {
 
     /// Size of the round icon background in list rows and empty states.
     static let iconSize: CGFloat = 32
+
+    /// The smallest height (and width, for icon buttons) a tap target should have.
+    static let minTapSize: CGFloat = 44
 }
