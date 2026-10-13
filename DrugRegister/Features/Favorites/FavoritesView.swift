@@ -4,6 +4,8 @@ import SwiftUI
 ///
 /// Delete is a custom swipe action, not `onDelete` or `EditButton`, because their
 /// text comes from iOS, which has no Macedonian.
+///
+/// Still a `List`, for the swipe action, but each row is the same card as in Search results.
 struct FavoritesView: View {
     @Environment(FavoritesStore.self) private var favorites
     @Environment(AppRouter.self) private var router
@@ -30,16 +32,28 @@ struct FavoritesView: View {
                         router.showDrug(drug)
                     } label: {
                         DrugRow(drug: drug)
-                            .padding(.vertical, .spacingXSmall)
+                            .cardStyle()
                     }
-                    .tint(.primary)
+                    .buttonStyle(.plain)
                     .swipeActions {
                         Button("Delete", systemImage: "trash", role: .destructive) {
                             favorites.remove(drug)
                         }
                     }
+                    // Half the Search card spacing on each side, so the gap between cards matches.
+                    .listRowInsets(EdgeInsets(
+                        top: .spacingSmall,
+                        leading: .spacingMedium,
+                        bottom: .spacingSmall,
+                        trailing: .spacingMedium
+                    ))
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                 }
             }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(.appBackground)
         }
     }
 }
