@@ -4,6 +4,7 @@ import SwiftUI
 /// (scan, recent searches, quick filters). Otherwise it shows the results.
 struct DrugSearchView: View {
     @Environment(AppRouter.self) private var router
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var viewModel: DrugSearchViewModel
     @State private var isShowingFilters = false
     @State private var isShowingScanner = false
@@ -64,6 +65,10 @@ struct DrugSearchView: View {
                 results
             }
         }
+        .transition(.opacity)
+        // Animates only the switch between screens. Typing and paging change the content
+        // inside one screen and stay instant.
+        .animation(.appStandard, value: phase)
     }
 
     /// Loading, error and empty states, below the barcode banner and the filter chips.
@@ -252,6 +257,7 @@ struct DrugSearchView: View {
                 Text("\(viewModel.total) results")
                     .font(.appCaption)
                     .foregroundStyle(.appSecondaryText)
+                    .contentTransition(.numericText())
 
                 ForEach(viewModel.drugs) { drug in
                     Button {
@@ -262,14 +268,23 @@ struct DrugSearchView: View {
                             .cardStyle()
                     }
                     .buttonStyle(.plain)
+                    .transition(rowTransition)
                     .task { await viewModel.loadMoreIfNeeded(after: drug) }
                 }
                 resultsFooter
             }
             .padding(.spacingMedium)
+            // New rows fade in when a search or the next page arrives. Keyed on the ids, so typing
+            // and pull to refresh with the same drugs do not animate.
+            .animation(.appStandard, value: viewModel.drugs.map(\.id))
         }
         .scrollDismissesKeyboard(.immediately)
         .refreshable { await viewModel.reload(force: true) }
+    }
+
+    /// Rows rise a little while they fade in. With Reduce Motion they only fade.
+    private var rowTransition: AnyTransition {
+        reduceMotion ? .opacity : .opacity.combined(with: .offset(y: .spacingMedium))
     }
 
     @ViewBuilder
@@ -309,6 +324,7 @@ struct DrugSearchView: View {
                 }
             }
             .cardStyle()
+            .transition(barTransition)
         }
     }
 
@@ -324,6 +340,8 @@ struct DrugSearchView: View {
             barcodeBanner
             filterBar
         }
+        .animation(.appStandard, value: viewModel.query.filters)
+        .animation(.appStandard, value: viewModel.query.ean)
     }
 
     /// Checked by the parent stacks, because an empty `topBars` would still get their spacing.
@@ -343,12 +361,19 @@ struct DrugSearchView: View {
                         viewModel.removeFilter(filter)
                     }
                     .accessibilityLabel(Text("Remove filter \(filter.title)"))
+                    .transition(reduceMotion ? .opacity : .scale.combined(with: .opacity))
                 }
                 Button("Clear all") { viewModel.clearFilters() }
                     .font(.appSubheadline)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .transition(barTransition)
         }
+    }
+
+    /// The barcode banner and the filter bar slide in from the top. With Reduce Motion they only fade.
+    private var barTransition: AnyTransition {
+        reduceMotion ? .opacity : .move(edge: .top).combined(with: .opacity)
     }
 
     // MARK: - Toolbar
