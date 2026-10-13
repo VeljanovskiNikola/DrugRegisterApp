@@ -17,7 +17,6 @@ struct RootView: View {
             }
             .tabItem { Label("Search", systemImage: "magnifyingglass") }
             .tag(AppTab.search)
-            .transparentTabBar()
 
             NavigationStack(path: $router.medicinesPath) {
                 MyMedicinesView(services: environment.medicineServices)
@@ -25,7 +24,6 @@ struct RootView: View {
             }
             .tabItem { Label("My medicines", systemImage: "cross.case") }
             .tag(AppTab.myMedicines)
-            .transparentTabBar()
 
             NavigationStack(path: $router.favoritesPath) {
                 FavoritesView()
@@ -33,14 +31,12 @@ struct RootView: View {
             }
             .tabItem { Label("Favorites", systemImage: "heart") }
             .tag(AppTab.favorites)
-            .transparentTabBar()
 
             NavigationStack {
                 SettingsView(service: environment.drugService, medicines: environment.medicineServices)
             }
             .tabItem { Label("Settings", systemImage: "gearshape") }
             .tag(AppTab.settings)
-            .transparentTabBar()
         }
         .environment(router)
         .environment(environment.favorites)
@@ -57,12 +53,6 @@ struct RootView: View {
 private extension View {
     func drugDestinations() -> some View {
         modifier(DrugDestinations())
-    }
-
-    /// No bar background: the content shows through behind the tab bar.
-    /// iOS sets this per tab, so every tab needs it.
-    func transparentTabBar() -> some View {
-        toolbarBackground(.hidden, for: .tabBar)
     }
 }
 
