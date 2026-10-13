@@ -4,6 +4,7 @@ import UIKit
 struct MyMedicinesView: View {
     @Environment(AppRouter.self) private var router
     @Environment(\.openURL) private var openURL
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var viewModel: MyMedicinesViewModel
     @State private var editing: Medicine?
     private let services: MedicineServices
@@ -20,6 +21,20 @@ struct MyMedicinesView: View {
             .navigationTitle("My medicines")
             // Runs each time the tab appears, so medicines added from a detail screen show up.
             .task { await viewModel.load() }
+            .safeAreaInset(edge: .bottom) { undoBanner }
+            .animation(.appStandard, value: viewModel.recentlyDeleted)
+            // The banner hides itself after a while. A new delete starts the wait again.
+            .task(id: viewModel.recentlyDeleted?.id) {
+                guard viewModel.recentlyDeleted != nil else { return }
+                try? await Task.sleep(for: Self.undoDuration)
+                guard !Task.isCancelled else { return }
+                viewModel.dismissUndo()
+            }
+            .onChange(of: viewModel.recentlyDeleted) { _, medicine in
+                guard let medicine else { return }
+                AccessibilityNotification.Announcement(String(localized: "Deleted: \(medicine.drug.nameLatin)")).post()
+            }
+            .onDisappear { viewModel.dismissUndo() }
             .sheet(item: $editing) { medicine in
                 MedicineFormView(
                     mode: .edit(medicine),
@@ -118,6 +133,35 @@ struct MyMedicinesView: View {
             Button("Delete", systemImage: "trash", role: .destructive) {
                 Task { await viewModel.delete(medicine) }
             }
+        }
+    }
+
+    // MARK: - Undo
+
+    private static let undoDuration = Duration.seconds(5)
+
+    /// Shows only the drug name. The note is private and never shown here.
+    @ViewBuilder
+    private var undoBanner: some View {
+        if let medicine = viewModel.recentlyDeleted {
+            HStack(spacing: .spacingMedium) {
+                Text("Deleted: \(medicine.drug.nameLatin)")
+                    .font(.appSubheadline)
+                    .lineLimit(2)
+                Spacer()
+                Button {
+                    Task { await viewModel.undoDelete() }
+                } label: {
+                    Text("Undo")
+                        .font(.appHeadline)
+                        .frame(minHeight: .minTapSize)
+                        .contentShape(.rect)
+                }
+            }
+            .cardStyle()
+            .padding(.horizontal, .spacingMedium)
+            .padding(.bottom, .spacingSmall)
+            .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
         }
     }
 

@@ -2,6 +2,19 @@ import Foundation
 import Testing
 @testable import DrugRegister
 
+/// Loads and deletes, but every save fails. For an undo that cannot be saved.
+private actor SaveFailingRepository: MedicineRepository {
+    private var medicines: [Medicine]
+
+    init(medicines: [Medicine]) {
+        self.medicines = medicines
+    }
+
+    func all() -> [Medicine] { medicines }
+    func save(_ medicine: Medicine) throws { throw RepositoryError() }
+    func delete(id: UUID) { medicines.removeAll { $0.id == id } }
+}
+
 @MainActor
 struct MyMedicinesViewModelTests {
 
@@ -55,6 +68,78 @@ struct MyMedicinesViewModelTests {
         await viewModel.delete(soon)
 
         #expect(viewModel.errorMessage == String(localized: "The medicine could not be deleted."))
+        #expect(viewModel.recentlyDeleted == nil)
+    }
+
+    // MARK: - Undo
+
+    @Test
+    func deleteOffersUndo() async {
+        let viewModel = MyMedicinesViewModel(services: makeServices(medicines: [soon, later]))
+        await viewModel.load()
+
+        await viewModel.delete(later)
+
+        #expect(viewModel.recentlyDeleted == later)
+    }
+
+    @Test
+    func undoBringsThePackAndItsRemindersBack() async throws {
+        let repository = InMemoryMedicineRepository(medicines: [soon, later])
+        let scheduler = StubReminderScheduler()
+        let viewModel = MyMedicinesViewModel(services: makeServices(repository: repository, scheduler: scheduler))
+        await viewModel.load()
+        await viewModel.delete(soon)
+
+        await viewModel.undoDelete()
+
+        #expect(viewModel.recentlyDeleted == nil)
+        #expect(Set(viewModel.medicines) == [soon, later])
+        // Same id and dates, so it is the same pack, not a new one.
+        #expect(Set(try await repository.all()) == [soon, later])
+        let scheduled = await scheduler.scheduled
+        #expect(scheduled.contains { $0.medicineID == soon.id })
+    }
+
+    @Test
+    func newerDeleteReplacesThePendingUndo() async throws {
+        let repository = InMemoryMedicineRepository(medicines: [expired, soon, later])
+        let viewModel = MyMedicinesViewModel(services: makeServices(repository: repository))
+        await viewModel.load()
+
+        await viewModel.delete(soon)
+        await viewModel.delete(later)
+        await viewModel.undoDelete()
+
+        #expect(viewModel.medicines.map(\.id).sorted() == [expired.id, later.id].sorted())
+        #expect(try await repository.all().contains(soon) == false)
+    }
+
+    @Test
+    func dismissingUndoKeepsTheDelete() async throws {
+        let repository = InMemoryMedicineRepository(medicines: [soon])
+        let viewModel = MyMedicinesViewModel(services: makeServices(repository: repository))
+        await viewModel.load()
+        await viewModel.delete(soon)
+
+        viewModel.dismissUndo()
+        await viewModel.undoDelete()   // nothing left to undo
+
+        #expect(viewModel.recentlyDeleted == nil)
+        #expect(viewModel.medicines.isEmpty)
+        #expect(try await repository.all().isEmpty)
+    }
+
+    @Test
+    func failedUndoShowsAnError() async {
+        let viewModel = MyMedicinesViewModel(services: makeServices(repository: SaveFailingRepository(medicines: [soon])))
+        await viewModel.load()
+        await viewModel.delete(soon)
+
+        await viewModel.undoDelete()
+
+        #expect(viewModel.errorMessage == String(localized: "The medicine could not be saved."))
+        #expect(viewModel.medicines.isEmpty)
     }
 
     @Test

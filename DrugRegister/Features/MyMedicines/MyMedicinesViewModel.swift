@@ -8,6 +8,8 @@ final class MyMedicinesViewModel {
     private(set) var hasLoaded = false
     private(set) var errorMessage: String?
     private(set) var permission = ReminderPermission.notDetermined
+    /// The pack the user just deleted, while the undo banner is up. A newer delete replaces it.
+    private(set) var recentlyDeleted: Medicine?
 
     private let services: MedicineServices
 
@@ -45,10 +47,13 @@ final class MyMedicinesViewModel {
         permission = await services.scheduler.permission()
     }
 
+    /// Deletes right away and keeps a copy for undo. Waiting with the real delete until the
+    /// banner is gone would leave storage and reminders out of step if the app is closed meanwhile.
     func delete(_ medicine: Medicine) async {
         do {
             try await services.repository.delete(id: medicine.id)
             medicines.removeAll { $0.id == medicine.id }
+            recentlyDeleted = medicine
             errorMessage = nil
         } catch {
             errorMessage = String(localized: "The medicine could not be deleted.")
@@ -56,5 +61,25 @@ final class MyMedicinesViewModel {
         }
         // Cancels its reminders: the new plan no longer has them.
         await services.syncReminders()
+    }
+
+    /// Saves the deleted pack back with the same id and dates, and plans its reminders again.
+    func undoDelete() async {
+        guard let medicine = recentlyDeleted else { return }
+        recentlyDeleted = nil
+        do {
+            try await services.repository.save(medicine)
+            medicines.append(medicine)
+            errorMessage = nil
+        } catch {
+            errorMessage = String(localized: "The medicine could not be saved.")
+            return
+        }
+        await services.syncReminders()
+    }
+
+    /// The banner timed out or the user left the tab. The delete stays.
+    func dismissUndo() {
+        recentlyDeleted = nil
     }
 }

@@ -439,6 +439,16 @@
         }
       }
     },
+    "Deleted: %@" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избришано: %@"
+          }
+        }
+      }
+    },
     "Dermatologicals" : {
       "localizations" : {
         "mk" : {
@@ -1849,6 +1859,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Обидете се да ги промените филтрите."
+          }
+        }
+      }
+    },
+    "Undo" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Врати"
           }
         }
       }
