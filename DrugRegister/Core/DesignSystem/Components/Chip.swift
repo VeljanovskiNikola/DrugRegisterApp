@@ -4,6 +4,8 @@ import SwiftUI
 struct Chip: View {
     let title: String
     var systemImage: String?
+    /// Shown after the title, for example an × on a chip that removes something.
+    var trailingSystemImage: String?
     let action: () -> Void
 
     var body: some View {
@@ -15,6 +17,10 @@ struct Chip: View {
                 }
                 Text(title)
                     .lineLimit(1)
+                if let trailingSystemImage {
+                    Image(systemName: trailingSystemImage)
+                        .foregroundStyle(.appSecondaryText)
+                }
             }
             .font(.appSubheadline)
             .foregroundStyle(.primary)

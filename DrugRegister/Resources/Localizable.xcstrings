@@ -349,12 +349,32 @@
         }
       }
     },
+    "Clear all" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избриши ги сите"
+          }
+        }
+      }
+    },
     "Clear barcode" : {
       "localizations" : {
         "mk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Избриши баркод"
+          }
+        }
+      }
+    },
+    "Clear filters" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избриши ги филтрите"
           }
         }
       }
@@ -1457,6 +1477,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Потсетниците се исклучени. Дозволете известувања за да добиете потсетник пред да истече пакувањето."
+          }
+        }
+      }
+    },
+    "Remove filter %@" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отстрани филтер %@"
           }
         }
       }

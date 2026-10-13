@@ -204,6 +204,112 @@ struct DrugSearchViewModelTests {
         #expect(SearchShortcut.generics.filters.productTypes == [.generic])
     }
 
+    // MARK: - Active filters
+
+    @Test
+    func activeFiltersFollowTheSheetOrder() {
+        let filters = DrugFilters(
+            dispensing: [.otcPharmacy, .prescription],
+            productTypes: [.generic],
+            atcGroup: .c,
+            positiveListOnly: true
+        )
+
+        #expect(filters.active == [
+            .dispensing(.prescription),
+            .dispensing(.otcPharmacy),
+            .productType(.generic),
+            .atcGroup(.c),
+            .positiveList,
+        ])
+        #expect(DrugFilters().active.isEmpty)
+    }
+
+    @Test
+    func removingOneFilterKeepsTheOthers() {
+        var filters = DrugFilters(dispensing: [.prescription, .hospitalOnly], atcGroup: .n, positiveListOnly: true)
+
+        filters.remove(.dispensing(.hospitalOnly))
+        filters.remove(.atcGroup(.n))
+
+        #expect(filters == DrugFilters(dispensing: [.prescription], positiveListOnly: true))
+    }
+
+    @Test
+    func removingAFilterKeepsTheTextAndLoadsAgain() async {
+        let log = CallLog()
+        let viewModel = makeViewModel(log: log)
+        viewModel.query.filters = DrugFilters(dispensing: [.prescription], atcGroup: .c)
+        await viewModel.reload()
+
+        viewModel.removeFilter(.atcGroup(.c))
+        await viewModel.reload()
+
+        let last = await log.calls.last
+        #expect(viewModel.query.text == "a")
+        #expect(last?.query.filters == DrugFilters(dispensing: [.prescription]))
+        #expect(last?.page == 1)
+        #expect(await log.calls.count == 2)
+    }
+
+    @Test
+    func clearingFiltersWithoutTextGoesHome() async {
+        let log = CallLog()
+        let viewModel = makeViewModel(log: log)
+        viewModel.query.text = ""
+        viewModel.apply(.generics)
+        await viewModel.reload()
+        #expect(viewModel.drugs.count == 20)
+
+        viewModel.clearFilters()
+        await viewModel.reload()
+
+        #expect(viewModel.query.isEmpty)
+        #expect(viewModel.drugs.isEmpty)
+        #expect(viewModel.hasLoaded == false)
+        #expect(await log.calls.count == 1)
+    }
+
+    @Test
+    func clearingFiltersKeepsTheText() async {
+        let log = CallLog()
+        let viewModel = makeViewModel(log: log)
+        viewModel.query.filters.positiveListOnly = true
+
+        viewModel.clearFilters()
+        await viewModel.reload()
+
+        #expect(viewModel.query == DrugQuery(text: "a"))
+        #expect(await log.calls.last?.query.filters == DrugFilters())
+    }
+
+    @Test
+    func answerThatArrivesAfterClearingFiltersIsIgnored() async {
+        let gate = Gate()
+        let service = StubDrugService(searchHandler: { _, page, limit in
+            await gate.wait()
+            return DrugPage.make(page: page, limit: limit, total: 45)
+        })
+        let viewModel = DrugSearchViewModel(
+            service: service,
+            recentSearchStore: makeRecentSearchStore(),
+            debounce: .zero
+        )
+        viewModel.apply(.prescription)
+        let search = Task { await viewModel.reload() }
+        while await !gate.hasWaiter { await Task.yield() }
+
+        viewModel.clearFilters()   // the user taps "Clear all" while the search is running
+        await viewModel.reload()
+        await gate.open()
+        await search.value
+
+        #expect(viewModel.query.isEmpty)
+        #expect(viewModel.drugs.isEmpty)
+        #expect(viewModel.hasLoaded == false)
+        #expect(viewModel.isLoading == false)
+    }
+
     // MARK: - Barcode
 
     @Test

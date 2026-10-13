@@ -25,7 +25,6 @@ struct DrugSearchView: View {
             )
             .onSubmit(of: .search) { viewModel.saveRecentSearch() }
             .toolbar { toolbar }
-            .safeAreaInset(edge: .top) { barcodeBanner }
             .sheet(isPresented: $isShowingFilters) {
                 DrugFilterSheet(filters: viewModel.query.filters) { viewModel.query.filters = $0 }
             }
@@ -46,22 +45,64 @@ struct DrugSearchView: View {
 
     // MARK: - Content
 
-    @ViewBuilder
     private var content: some View {
-        if viewModel.query.isEmpty {
-            home
-        } else if viewModel.drugs.isEmpty {
-            if let message = viewModel.errorMessage {
-                ErrorStateView(message: message, systemImageName: "wifi.exclamationmark") {
-                    Task { await viewModel.reload(force: true) }
+        Group {
+            switch phase {
+            case .home:
+                home
+            case .loading:
+                statusScreen { ProgressView() }
+            case .failed(let message):
+                statusScreen {
+                    ErrorStateView(message: message, systemImageName: "wifi.exclamationmark") {
+                        Task { await viewModel.reload(force: true) }
+                    }
                 }
-            } else if viewModel.hasLoaded && !viewModel.isLoading {
-                emptyResult
-            } else {
-                ProgressView()
+            case .empty:
+                statusScreen { emptyResult }
+            case .results:
+                results
             }
+        }
+    }
+
+    /// Loading, error and empty states, below the barcode banner and the filter chips.
+    /// In a scroll view so the navigation bar can animate when the search field gets focus.
+    private func statusScreen(@ViewBuilder _ content: () -> some View) -> some View {
+        ScrollView {
+            VStack(spacing: .spacingMedium) {
+                if hasTopBars {
+                    topBars
+                }
+                content()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .padding(.spacingMedium)
+            .containerRelativeFrame(.vertical)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .scrollDismissesKeyboard(.immediately)
+    }
+
+    private enum Phase: Hashable {
+        case home
+        case loading
+        case failed(String)
+        case empty
+        case results
+    }
+
+    private var phase: Phase {
+        if viewModel.query.isEmpty {
+            .home
+        } else if !viewModel.drugs.isEmpty {
+            .results
+        } else if let message = viewModel.errorMessage {
+            .failed(message)
+        } else if viewModel.hasLoaded && !viewModel.isLoading {
+            .empty
         } else {
-            results
+            .loading
         }
     }
 
@@ -77,19 +118,30 @@ struct DrugSearchView: View {
                     .buttonStyle(.bordered)
             }
         } else if viewModel.query.searchText.isEmpty {
-            ContentUnavailableView(
-                "No drugs found",
-                systemImage: "pills",
-                description: Text("Try changing the filters.")
-            )
+            ContentUnavailableView {
+                Label("No drugs found", systemImage: "pills")
+            } description: {
+                Text("Try changing the filters.")
+            } actions: {
+                clearFiltersButton
+            }
         } else {
             // Not `ContentUnavailableView.search`: its text comes from iOS, which has no Macedonian.
-            ContentUnavailableView(
-                "No results for “\(viewModel.query.searchText)”",
-                systemImage: "magnifyingglass",
-                description: Text("Check the spelling or try a new search.")
-            )
+            ContentUnavailableView {
+                Label("No results for “\(viewModel.query.searchText)”", systemImage: "magnifyingglass")
+            } description: {
+                Text("Check the spelling or try a new search.")
+            } actions: {
+                if viewModel.query.filters.isActive {
+                    clearFiltersButton
+                }
+            }
         }
+    }
+
+    private var clearFiltersButton: some View {
+        Button("Clear filters") { viewModel.clearFilters() }
+            .buttonStyle(.bordered)
     }
 
     // MARK: - Home
@@ -194,6 +246,9 @@ struct DrugSearchView: View {
     private var results: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: .spacingMedium) {
+                if hasTopBars {
+                    topBars
+                }
                 Text("\(viewModel.total) results")
                     .font(.appCaption)
                     .foregroundStyle(.appSecondaryText)
@@ -254,8 +309,45 @@ struct DrugSearchView: View {
                 }
             }
             .cardStyle()
-            .padding(.horizontal, .spacingMedium)
-            .padding(.top, .spacingSmall)
+        }
+    }
+
+    // MARK: - Filters
+
+    /// The barcode banner and the filter chips, at the top of every screen except home.
+    ///
+    /// They scroll with the content instead of sitting in a top `safeAreaInset`. The navigation bar
+    /// moves the scroll view with its own animation when the search field gets focus. An inset does
+    /// not follow that animation and jumps.
+    private var topBars: some View {
+        VStack(spacing: .spacingSmall) {
+            barcodeBanner
+            filterBar
+        }
+    }
+
+    /// Checked by the parent stacks, because an empty `topBars` would still get their spacing.
+    private var hasTopBars: Bool {
+        viewModel.query.ean != nil || viewModel.query.filters.isActive
+    }
+
+    /// The filters that are on, so they are visible and each one is a tap away from off.
+    /// The chips wrap, so every filter that is on stays in view.
+    @ViewBuilder
+    private var filterBar: some View {
+        let filters = viewModel.query.filters.active
+        if !filters.isEmpty {
+            FlowLayout {
+                ForEach(filters, id: \.self) { filter in
+                    Chip(title: filter.title, trailingSystemImage: "xmark") {
+                        viewModel.removeFilter(filter)
+                    }
+                    .accessibilityLabel(Text("Remove filter \(filter.title)"))
+                }
+                Button("Clear all") { viewModel.clearFilters() }
+                    .font(.appSubheadline)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 

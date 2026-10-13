@@ -136,6 +136,17 @@ final class DrugSearchViewModel {
         query.filters = shortcut.filters
     }
 
+    // MARK: - Filters
+
+    /// Text and barcode stay. With no text left, the empty query brings the home screen back.
+    func removeFilter(_ filter: ActiveFilter) {
+        query.filters.remove(filter)
+    }
+
+    func clearFilters() {
+        query.filters = DrugFilters()
+    }
+
     /// Called when the user submits the search or opens a result.
     /// Blank text is not saved. The same text in another case moves to the top.
     func saveRecentSearch() {
