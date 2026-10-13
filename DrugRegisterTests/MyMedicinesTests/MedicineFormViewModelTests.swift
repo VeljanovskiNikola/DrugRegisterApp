@@ -81,6 +81,19 @@ struct MedicineFormViewModelTests {
         #expect(Set(all.map(\.drug.id)) == [drug.id])
     }
 
+    /// "View in register" on an opened pack uses `drug`. It must be the pack's own snapshot.
+    @Test
+    func editFormKnowsThePacksDrug() {
+        let packDrug = DrugSnapshot(.make(id: "777", name: "PARACETAMOL"))
+        let medicine = Medicine.make(drug: packDrug, expiry: day(2027, 1, 31))
+        let editForm = MedicineFormViewModel(mode: .edit(medicine), services: makeServices())
+        let newForm = addForm(makeServices())
+
+        #expect(editForm.isEditing)
+        #expect(editForm.drug == packDrug)
+        #expect(newForm.isEditing == false)
+    }
+
     @Test
     func editKeepsIdentityAndChangesTheDateAndNote() async throws {
         let original = Medicine.make(expiry: day(2027, 1, 31), isExactDay: false, note: "old")

@@ -8,10 +8,18 @@ struct MedicineFormView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel: MedicineFormViewModel
     private let onSaved: () -> Void
+    /// Set by the My medicines list, which opens a pack here. The list closes the form and navigates.
+    private let onViewInRegister: ((DrugSnapshot) -> Void)?
 
-    init(mode: MedicineFormViewModel.Mode, services: MedicineServices, onSaved: @escaping () -> Void = {}) {
+    init(
+        mode: MedicineFormViewModel.Mode,
+        services: MedicineServices,
+        onSaved: @escaping () -> Void = {},
+        onViewInRegister: ((DrugSnapshot) -> Void)? = nil
+    ) {
         _viewModel = State(initialValue: MedicineFormViewModel(mode: mode, services: services))
         self.onSaved = onSaved
+        self.onViewInRegister = onViewInRegister
     }
 
     var body: some View {
@@ -59,6 +67,13 @@ struct MedicineFormView: View {
                     Text(viewModel.drug.strengthAndForm)
                         .font(.appCaption)
                         .foregroundStyle(.appSecondaryText)
+                }
+            }
+            if viewModel.isEditing, let onViewInRegister {
+                Button {
+                    onViewInRegister(viewModel.drug)
+                } label: {
+                    Label("View in register", systemImage: "doc.text.magnifyingglass")
                 }
             }
         }

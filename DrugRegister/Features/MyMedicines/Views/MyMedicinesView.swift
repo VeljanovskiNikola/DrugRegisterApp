@@ -21,9 +21,15 @@ struct MyMedicinesView: View {
             // Runs each time the tab appears, so medicines added from a detail screen show up.
             .task { await viewModel.load() }
             .sheet(item: $editing) { medicine in
-                MedicineFormView(mode: .edit(medicine), services: services) {
-                    Task { await viewModel.load() }
-                }
+                MedicineFormView(
+                    mode: .edit(medicine),
+                    services: services,
+                    onSaved: { Task { await viewModel.load() } },
+                    onViewInRegister: { snapshot in
+                        editing = nil
+                        router.showSavedDrug(snapshot)
+                    }
+                )
             }
     }
 
@@ -86,10 +92,11 @@ struct MyMedicinesView: View {
         }
     }
 
+    /// A tap opens the user's pack (expiry, packs, note). The register drug is one more tap away.
     private func row(for entry: ExpiryEntry) -> some View {
         let medicine = entry.medicine
         return Button {
-            router.showSavedDrug(medicine.drug)
+            editing = medicine
         } label: {
             MedicineRow(entry: entry, expiryText: viewModel.expiryText(for: medicine))
         }
@@ -105,6 +112,9 @@ struct MyMedicinesView: View {
         }
         .contextMenu {
             Button("Edit", systemImage: "pencil") { editing = medicine }
+            Button("View in register", systemImage: "doc.text.magnifyingglass") {
+                router.showSavedDrug(medicine.drug)
+            }
             Button("Delete", systemImage: "trash", role: .destructive) {
                 Task { await viewModel.delete(medicine) }
             }

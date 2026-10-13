@@ -1853,6 +1853,16 @@
         }
       }
     },
+    "View in register" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Види во регистарот"
+          }
+        }
+      }
+    },
     "We could not read the server response." : {
       "localizations" : {
         "mk" : {
