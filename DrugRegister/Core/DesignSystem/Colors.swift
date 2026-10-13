@@ -14,4 +14,10 @@ extension ShapeStyle where Self == Color {
     static var appWarning: Color { .orange }
     /// Something is already past, for example an expired pack.
     static var appCritical: Color { .red }
+
+    // Text on a light tint of the color above. Darker in light mode so small text reaches
+    // WCAG AA (4.5:1) on the 12% tint. Dark mode uses the same color as the tint.
+    static var appAccentText: Color { Color(.badgeAccentText) }
+    static var appWarningText: Color { Color(.badgeWarningText) }
+    static var appCriticalText: Color { Color(.badgeCriticalText) }
 }

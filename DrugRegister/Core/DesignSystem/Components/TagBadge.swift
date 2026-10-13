@@ -8,11 +8,21 @@ struct TagBadge: View {
         case warning
         case critical
 
+        /// The background tint, and the color of an icon that stands on its own.
         var color: Color {
             switch self {
             case .accent: .appAccent
             case .warning: .appWarning
             case .critical: .appCritical
+            }
+        }
+
+        /// Text and icon inside the badge. The plain colors are too light on the tint.
+        var textColor: Color {
+            switch self {
+            case .accent: .appAccentText
+            case .warning: .appWarningText
+            case .critical: .appCriticalText
             }
         }
     }
@@ -29,7 +39,7 @@ struct TagBadge: View {
             Text(text)
         }
         .font(.appCaption.weight(.semibold))
-        .foregroundStyle(tone.color)
+        .foregroundStyle(tone.textColor)
         .padding(.horizontal, .spacingSmall)
         .padding(.vertical, .spacingXSmall)
         .background(tone.color.opacity(0.12), in: .capsule)
