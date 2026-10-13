@@ -499,6 +499,16 @@
         }
       }
     },
+    "Documents" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документи"
+          }
+        }
+      }
+    },
     "Dosage" : {
       "localizations" : {
         "mk" : {

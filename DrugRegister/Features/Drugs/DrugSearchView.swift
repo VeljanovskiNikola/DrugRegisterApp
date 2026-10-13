@@ -225,7 +225,7 @@ struct DrugSearchView: View {
                     Button {
                         viewModel.apply(shortcut)
                     } label: {
-                        ShortcutRow(shortcut: shortcut)
+                        IconRow(title: Text(shortcut.title), systemImage: shortcut.systemImage)
                     }
                     .buttonStyle(.plain)
                 }
@@ -408,27 +408,6 @@ struct DrugSearchView: View {
                 )
             }
         }
-    }
-}
-
-private struct ShortcutRow: View {
-    let shortcut: SearchShortcut
-
-    var body: some View {
-        HStack(spacing: .spacingMedium) {
-            Image(systemName: shortcut.systemImage)
-                .foregroundStyle(.appAccent)
-                .frame(width: .iconSize, height: .iconSize)
-                .background(.appAccentSoft, in: .rect(cornerRadius: .cornerRadiusMedium))
-            Text(shortcut.title)
-                .font(.appBody)
-            Spacer()
-            Image(systemName: "chevron.right")
-                .font(.appCaption.weight(.semibold))
-                .foregroundStyle(.tertiary)
-        }
-        .padding(.vertical, .spacingSmall)
-        .contentShape(.rect)
     }
 }
 

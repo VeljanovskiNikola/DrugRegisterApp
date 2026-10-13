@@ -24,7 +24,7 @@ struct DrugDetailView: View {
                     InfoItem(title: "Registration number", value: drug.authorization.number),
                     InfoItem(title: "Pack size", value: drug.packaging),
                 ])
-                documentLinks
+                documents
                 prices
                 textCard("Composition", drug.composition)
                 textCard("Dosage", drug.dosage)
@@ -105,17 +105,6 @@ struct DrugDetailView: View {
                     .font(.appCaption)
                     .foregroundStyle(.appAccent)
             }
-
-            if let url = drug.documents.url(for: .smpc) {
-                Button {
-                    router.showDocument(DrugDocument(kind: .smpc, url: url))
-                } label: {
-                    Label("Open SmPC (PDF)", systemImage: "doc.richtext")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
-            }
         }
     }
 
@@ -145,20 +134,44 @@ struct DrugDetailView: View {
         .cardStyle()
     }
 
-    /// Documents people open less often, below the overview.
-    private var documentLinks: some View {
+    /// The other documents, below the overview, as rows like Quick filters.
+    /// The official site is always there, so the card is never empty.
+    private var documents: some View {
         VStack(alignment: .leading, spacing: .spacingSmall) {
-            if let url = drug.documents.url(for: .label) {
-                Button {
-                    router.showDocument(DrugDocument(kind: .label, url: url))
-                } label: {
-                    LinkRowLabel("Label and packaging (PDF)")
+            SectionHeader("Documents")
+            VStack(spacing: 0) {
+                if let url = drug.documents.url(for: .smpc) {
+                    Button {
+                        router.showDocument(DrugDocument(kind: .smpc, url: url))
+                    } label: {
+                        IconRow(title: Text("Open SmPC (PDF)"), systemImage: "doc.richtext")
+                    }
+                    rowDivider
+                }
+                if let url = drug.documents.url(for: .label) {
+                    Button {
+                        router.showDocument(DrugDocument(kind: .label, url: url))
+                    } label: {
+                        IconRow(title: Text("Label and packaging (PDF)"), systemImage: "shippingbox")
+                    }
+                    rowDivider
+                }
+                Link(destination: drug.detailUrl) {
+                    IconRow(
+                        title: Text("Open on the official site"),
+                        systemImage: "safari",
+                        trailingSystemImage: "arrow.up.right"
+                    )
                 }
             }
-            Link(destination: drug.detailUrl) {
-                LinkRowLabel("Open on the official site")
-            }
+            .buttonStyle(.plain)
+            .cardStyle()
         }
+    }
+
+    private var rowDivider: some View {
+        Divider()
+            .padding(.leading, .iconSize + .spacingMedium)
     }
 
     @ViewBuilder
