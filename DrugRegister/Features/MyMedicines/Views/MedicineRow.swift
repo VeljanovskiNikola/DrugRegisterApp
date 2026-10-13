@@ -7,38 +7,33 @@ struct MedicineRow: View {
 
     private var medicine: Medicine { entry.medicine }
 
+    /// The status shows once, in the badge. The section header already names the group.
     var body: some View {
-        HStack(alignment: .top, spacing: .spacingMedium) {
-            Image(systemName: entry.group.systemImage)
-                .foregroundStyle(entry.group.badgeTone?.textColor ?? .appSecondaryText)
-                .frame(width: .iconSize)
+        VStack(alignment: .leading, spacing: .spacingXSmall) {
+            Text(medicine.drug.nameLatin)
+                .font(.appHeadline)
+                .foregroundStyle(.primary)
+            if !medicine.drug.strengthAndForm.isEmpty {
+                Text(medicine.drug.strengthAndForm)
+                    .font(.appCaption)
+                    .foregroundStyle(.appSecondaryText)
+            }
+            Text("Expiry date: \(expiryText)")
+                .font(.appSubheadline)
+                .foregroundStyle(.primary)
 
-            VStack(alignment: .leading, spacing: .spacingXSmall) {
-                Text(medicine.drug.nameLatin)
-                    .font(.appHeadline)
-                    .foregroundStyle(.primary)
-                if !medicine.drug.strengthAndForm.isEmpty {
-                    Text(medicine.drug.strengthAndForm)
-                        .font(.appCaption)
-                        .foregroundStyle(.appSecondaryText)
-                }
-                Text("Expiry date: \(expiryText)")
-                    .font(.appSubheadline)
-                    .foregroundStyle(.primary)
+            statusLabel
 
-                statusLabel
-
-                if medicine.packCount > 1 {
-                    Text("\(medicine.packCount) packs")
-                        .font(.appCaption)
-                        .foregroundStyle(.appSecondaryText)
-                }
-                if !medicine.note.isEmpty {
-                    Text(medicine.note)
-                        .font(.appCaption)
-                        .foregroundStyle(.appSecondaryText)
-                        .lineLimit(1)
-                }
+            if medicine.packCount > 1 {
+                Text("\(medicine.packCount) packs")
+                    .font(.appCaption)
+                    .foregroundStyle(.appSecondaryText)
+            }
+            if !medicine.note.isEmpty {
+                Text(medicine.note)
+                    .font(.appCaption)
+                    .foregroundStyle(.appSecondaryText)
+                    .lineLimit(1)
             }
         }
         .padding(.vertical, .spacingXSmall)
