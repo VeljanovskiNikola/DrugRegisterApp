@@ -15,7 +15,7 @@ struct DrugDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: .spacingLarge) {
                 header
-                addToMyMedicines
+                actions
                 InfoCard(title: "Overview", items: [
                     InfoItem(title: "Active ingredient", value: drug.genericName),
                     InfoItem(title: "ATC code", value: drug.atcCode),
@@ -24,7 +24,7 @@ struct DrugDetailView: View {
                     InfoItem(title: "Registration number", value: drug.authorization.number),
                     InfoItem(title: "Pack size", value: drug.packaging),
                 ])
-                documents
+                documentLinks
                 prices
                 textCard("Composition", drug.composition)
                 textCard("Dosage", drug.dosage)
@@ -75,8 +75,22 @@ struct DrugDetailView: View {
 
     // MARK: - Sections
 
-    private var addToMyMedicines: some View {
+    /// What people open the screen for, right under the header so the leaflet is never below the fold.
+    /// The PDFs stay on the register's own site. They open in the app's PDF viewer,
+    /// because the site sends them as downloads and Safari would save them to the phone.
+    private var actions: some View {
         VStack(alignment: .leading, spacing: .spacingSmall) {
+            if let url = drug.documents.url(for: .patientLeaflet) {
+                Button {
+                    router.showDocument(DrugDocument(kind: .patientLeaflet, url: url))
+                } label: {
+                    Label("Open leaflet (PDF)", systemImage: "doc.text")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+            }
+
             Button {
                 isAddingMedicine = true
             } label: {
@@ -90,6 +104,17 @@ struct DrugDetailView: View {
                 Label("Added to my medicines", systemImage: "checkmark.circle.fill")
                     .font(.appCaption)
                     .foregroundStyle(.appAccent)
+            }
+
+            if let url = drug.documents.url(for: .smpc) {
+                Button {
+                    router.showDocument(DrugDocument(kind: .smpc, url: url))
+                } label: {
+                    Label("Open SmPC (PDF)", systemImage: "doc.richtext")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
             }
         }
     }
@@ -120,30 +145,9 @@ struct DrugDetailView: View {
         .cardStyle()
     }
 
-    /// The PDFs stay on the register's own site. They open in the app's PDF viewer,
-    /// because the site sends them as downloads and Safari would save them to the phone.
-    private var documents: some View {
+    /// Documents people open less often, below the overview.
+    private var documentLinks: some View {
         VStack(alignment: .leading, spacing: .spacingSmall) {
-            if let url = drug.documents.url(for: .patientLeaflet) {
-                Button {
-                    router.showDocument(DrugDocument(kind: .patientLeaflet, url: url))
-                } label: {
-                    Label("Open leaflet (PDF)", systemImage: "doc.text")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-            }
-            if let url = drug.documents.url(for: .smpc) {
-                Button {
-                    router.showDocument(DrugDocument(kind: .smpc, url: url))
-                } label: {
-                    Label("Open SmPC (PDF)", systemImage: "doc.richtext")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
-            }
             if let url = drug.documents.url(for: .label) {
                 Button {
                     router.showDocument(DrugDocument(kind: .label, url: url))
