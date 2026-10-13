@@ -408,7 +408,7 @@ private struct ShortcutRow: View {
             Image(systemName: shortcut.systemImage)
                 .foregroundStyle(.appAccent)
                 .frame(width: .iconSize, height: .iconSize)
-                .background(Color.accentColor.opacity(0.12), in: .rect(cornerRadius: .cornerRadiusMedium))
+                .background(.appAccentSoft, in: .rect(cornerRadius: .cornerRadiusMedium))
             Text(shortcut.title)
                 .font(.appBody)
             Spacer()

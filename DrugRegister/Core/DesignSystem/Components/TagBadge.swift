@@ -42,7 +42,7 @@ struct TagBadge: View {
         .foregroundStyle(tone.textColor)
         .padding(.horizontal, .spacingSmall)
         .padding(.vertical, .spacingXSmall)
-        .background(tone.tint.opacity(0.12), in: .capsule)
+        .background(tone.tint.opacity(.softTintOpacity), in: .capsule)
     }
 }
 
