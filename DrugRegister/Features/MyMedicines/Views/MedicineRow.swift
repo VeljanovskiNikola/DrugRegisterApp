@@ -10,7 +10,7 @@ struct MedicineRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: .spacingMedium) {
             Image(systemName: entry.group.systemImage)
-                .foregroundStyle(entry.group.badgeTone?.color ?? .appSecondaryText)
+                .foregroundStyle(entry.group.badgeTone?.textColor ?? .appSecondaryText)
                 .frame(width: .iconSize)
 
             VStack(alignment: .leading, spacing: .spacingXSmall) {
