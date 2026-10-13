@@ -161,17 +161,20 @@ struct DrugDetailView: View {
         }
     }
 
+    @ViewBuilder
     private var prices: some View {
-        VStack(alignment: .leading, spacing: .spacingSmall) {
-            SectionHeader("Prices")
-            VStack(spacing: .spacingSmall) {
-                PriceRow(title: "Retail, with VAT", amount: drug.prices.retailWithVat)
-                Divider()
-                PriceRow(title: "Wholesale, without VAT", amount: drug.prices.wholesaleExVat)
-                Divider()
-                PriceRow(title: "Reference", amount: drug.prices.reference)
+        if !drug.prices.isEmpty {
+            VStack(alignment: .leading, spacing: .spacingSmall) {
+                SectionHeader("Prices")
+                VStack(spacing: .spacingSmall) {
+                    PriceRow(title: "Retail, with VAT", amount: drug.prices.retailWithVat)
+                    Divider()
+                    PriceRow(title: "Wholesale, without VAT", amount: drug.prices.wholesaleExVat)
+                    Divider()
+                    PriceRow(title: "Reference", amount: drug.prices.reference)
+                }
+                .cardStyle()
             }
-            .cardStyle()
         }
     }
 

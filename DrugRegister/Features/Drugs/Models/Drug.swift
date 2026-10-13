@@ -44,6 +44,11 @@ struct Drug: Identifiable, Codable, Hashable, Sendable {
         let wholesaleExVat: Double?
         let retailWithVat: Double?
         let reference: Double?
+
+        /// No price at all. The detail screen then leaves the card out instead of three "no price" rows.
+        var isEmpty: Bool {
+            wholesaleExVat == nil && retailWithVat == nil && reference == nil
+        }
     }
 
     /// PDF links. They point to the site's own URLs. `nil` when the drug has no such PDF.
