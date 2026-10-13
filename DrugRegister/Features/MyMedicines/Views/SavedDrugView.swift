@@ -72,8 +72,9 @@ private struct SavedDrugFallbackView: View {
                     Button("Try Again", action: retry)
                         .buttonStyle(.bordered)
                 }
-                Link("Open on the official site", destination: snapshot.detailUrl)
-                    .font(.appSubheadline)
+                Link(destination: snapshot.detailUrl) {
+                    LinkRowLabel("Open on the official site")
+                }
 
                 Text("Check the package or ask a pharmacist.")
                     .font(.appCaption)
