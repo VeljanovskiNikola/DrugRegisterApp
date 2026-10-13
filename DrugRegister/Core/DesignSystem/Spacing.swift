@@ -16,4 +16,7 @@ extension CGFloat {
 
     /// The smallest height (and width, for icon buttons) a tap target should have.
     static let minTapSize: CGFloat = 44
+
+    /// The widest content gets on iPad. Wider cards and lines are hard to read.
+    static let maxContentWidth: CGFloat = 700
 }

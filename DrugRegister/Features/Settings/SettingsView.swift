@@ -48,6 +48,9 @@ struct SettingsView: View {
                     .foregroundStyle(.appSecondaryText)
             }
         }
+        .scrollContentBackground(.hidden)
+        .readableWidth()
+        .background(.appBackground)
         .navigationTitle("Settings")
         .task { await viewModel.loadMeta() }
         // Again on return from iOS Settings, where the user may have allowed notifications.

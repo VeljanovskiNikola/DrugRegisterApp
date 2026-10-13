@@ -36,6 +36,7 @@ struct DrugDetailView: View {
                     .foregroundStyle(.appSecondaryText)
             }
             .padding(.spacingMedium)
+            .readableWidth()
         }
         .background(.appBackground)
         .navigationTitle(drug.nameLatin)

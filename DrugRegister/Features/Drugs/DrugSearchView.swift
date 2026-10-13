@@ -83,6 +83,7 @@ struct DrugSearchView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .padding(.spacingMedium)
+            .readableWidth()
             .containerRelativeFrame(.vertical)
         }
         .scrollBounceBehavior(.basedOnSize)
@@ -162,6 +163,7 @@ struct DrugSearchView: View {
                 dataFooter
             }
             .padding(.spacingMedium)
+            .readableWidth()
         }
         .scrollDismissesKeyboard(.immediately)
     }
@@ -274,6 +276,7 @@ struct DrugSearchView: View {
                 resultsFooter
             }
             .padding(.spacingMedium)
+            .readableWidth()
             // New rows fade in when a search or the next page arrives. Keyed on the ids, so typing
             // and pull to refresh with the same drugs do not animate.
             .animation(.appStandard, value: viewModel.drugs.map(\.id))

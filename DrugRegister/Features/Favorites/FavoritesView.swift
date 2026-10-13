@@ -53,6 +53,7 @@ struct FavoritesView: View {
             }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
+            .readableWidth()
             .background(.appBackground)
         }
     }

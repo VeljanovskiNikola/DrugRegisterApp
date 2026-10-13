@@ -21,7 +21,8 @@ struct MyMedicinesView: View {
 
     var body: some View {
         content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .readableWidth()
+            .frame(maxHeight: .infinity)
             .background(.appBackground)
             .navigationTitle("My medicines")
             .toolbar {

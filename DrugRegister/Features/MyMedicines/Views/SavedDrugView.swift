@@ -81,6 +81,7 @@ private struct SavedDrugFallbackView: View {
                     .foregroundStyle(.appSecondaryText)
             }
             .padding(.spacingMedium)
+            .readableWidth()
         }
         .background(.appBackground)
         .navigationTitle(snapshot.nameLatin)
