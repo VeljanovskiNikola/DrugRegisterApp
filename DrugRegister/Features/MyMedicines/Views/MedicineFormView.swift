@@ -7,6 +7,7 @@ import SwiftUI
 struct MedicineFormView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel: MedicineFormViewModel
+    @State private var isConfirmingDiscard = false
     private let onSaved: () -> Void
     /// Set by the My medicines list, which opens a pack here. The list closes the form and navigates.
     private let onViewInRegister: ((DrugSnapshot) -> Void)?
@@ -36,6 +37,12 @@ struct MedicineFormView: View {
                             .foregroundStyle(.appCritical)
                     }
                 }
+            }
+            .confirmationDialog("Discard changes?", isPresented: $isConfirmingDiscard, titleVisibility: .visible) {
+                Button("Discard changes", role: .destructive) {
+                    onViewInRegister?(viewModel.drug)
+                }
+                Button("Keep editing", role: .cancel) {}
             }
             .navigationTitle(viewModel.isEditing ? "Edit medicine" : "Add to my medicines")
             .navigationBarTitleDisplayMode(.inline)
@@ -71,7 +78,11 @@ struct MedicineFormView: View {
             }
             if viewModel.isEditing, let onViewInRegister {
                 Button {
-                    onViewInRegister(viewModel.drug)
+                    if viewModel.hasChanges {
+                        isConfirmingDiscard = true
+                    } else {
+                        onViewInRegister(viewModel.drug)
+                    }
                 } label: {
                     Label("View in register", systemImage: "doc.text.magnifyingglass")
                 }

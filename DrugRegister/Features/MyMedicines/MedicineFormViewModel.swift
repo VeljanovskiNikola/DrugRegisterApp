@@ -113,6 +113,20 @@ final class MedicineFormViewModel {
         note.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
+    private var openedOn: CalendarDay? {
+        isOpened ? CalendarDay(openedDate, calendar: services.calendar) : nil
+    }
+
+    /// True when saving would change the saved pack. Always false when adding.
+    /// Leaving the form then asks first, so the user does not lose the edit by surprise.
+    var hasChanges: Bool {
+        guard case .edit(let medicine) = mode else { return false }
+        return expiry != medicine.expiry
+            || packCount != medicine.packCount
+            || openedOn != medicine.openedOn
+            || trimmedNote != medicine.note
+    }
+
     var canSave: Bool {
         expiry != nil
             && Self.packRange.contains(packCount)
@@ -126,8 +140,6 @@ final class MedicineFormViewModel {
         isSaving = true
         defer { isSaving = false }
 
-        let calendar = services.calendar
-        let openedOn = isOpened ? CalendarDay(openedDate, calendar: calendar) : nil
         let medicine: Medicine
         switch mode {
         case .add(let drug):

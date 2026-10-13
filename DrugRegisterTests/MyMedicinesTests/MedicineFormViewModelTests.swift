@@ -94,6 +94,63 @@ struct MedicineFormViewModelTests {
         #expect(newForm.isEditing == false)
     }
 
+    // MARK: - Unsaved changes
+
+    @Test
+    func openedEditFormHasNoChanges() {
+        let medicine = Medicine.make(expiry: day(2027, 1, 31), isExactDay: false, note: "shelf")
+        let form = MedicineFormViewModel(mode: .edit(medicine), services: makeServices())
+
+        #expect(form.hasChanges == false)
+    }
+
+    @Test
+    func everyFieldCountsAsAChange() {
+        let medicine = Medicine.make(expiry: day(2027, 1, 31), isExactDay: false, packCount: 2, note: "shelf")
+        let services = makeServices()
+        func form() -> MedicineFormViewModel {
+            MedicineFormViewModel(mode: .edit(medicine), services: services)
+        }
+
+        let expiry = form()
+        expiry.expiryMonth = 2
+        #expect(expiry.hasChanges)
+
+        let packs = form()
+        packs.packCount = 3
+        #expect(packs.hasChanges)
+
+        let opened = form()
+        opened.isOpened = true
+        #expect(opened.hasChanges)
+
+        let note = form()
+        note.note = "kitchen"
+        #expect(note.hasChanges)
+    }
+
+    @Test
+    func undoingAnEditIsNoChange() {
+        let medicine = Medicine.make(expiry: day(2027, 1, 31), isExactDay: false, note: "shelf")
+        let form = MedicineFormViewModel(mode: .edit(medicine), services: makeServices())
+
+        form.packCount = 5
+        form.packCount = 1
+        // Only spaces around the note: it saves the same text.
+        form.note = "  shelf \n"
+
+        #expect(form.hasChanges == false)
+    }
+
+    @Test
+    func addFormNeverHasChanges() {
+        let form = addForm(makeServices())
+        form.expiryMonth = 5
+        form.expiryYear = 2027
+
+        #expect(form.hasChanges == false)
+    }
+
     @Test
     func editKeepsIdentityAndChangesTheDateAndNote() async throws {
         let original = Medicine.make(expiry: day(2027, 1, 31), isExactDay: false, note: "old")

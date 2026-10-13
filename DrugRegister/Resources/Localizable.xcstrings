@@ -449,6 +449,26 @@
         }
       }
     },
+    "Discard changes" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отфрли ги промените"
+          }
+        }
+      }
+    },
+    "Discard changes?" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Да се отфрлат промените?"
+          }
+        }
+      }
+    },
     "Dispensing" : {
       "localizations" : {
         "mk" : {
@@ -887,6 +907,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Информации од јавниот регистар на лекови на Северна Македонија. Ова не е медицински совет. Прашајте лекар или фармацевт."
+          }
+        }
+      }
+    },
+    "Keep editing" : {
+      "localizations" : {
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжи со уредување"
           }
         }
       }
