@@ -3,7 +3,7 @@
 iOS app for the North Macedonia drug register. It is read-only. It reads the Drug Register API
 (`https://drug-register-api.vercel.app`, spec in `api.yaml`) and shows drugs with search, filters and details.
 
-Stack: SwiftUI, Swift 6 (strict concurrency), `@Observable`, async/await, Swift Testing. iOS 17+. No third-party packages.
+Stack: SwiftUI, Swift 6 (strict concurrency), `@Observable`, async/await, Swift Testing. iOS 18.6+. No third-party packages.
 
 ## Building and testing
 

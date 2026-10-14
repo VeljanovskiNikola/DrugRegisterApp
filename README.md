@@ -8,7 +8,7 @@ architecture as the DemoShop app: features first, few layers, plain dependency i
 
 1. Open `DrugRegister.xcodeproj` in Xcode 16 or newer.
 2. Open `DrugRegister/App/Secrets.swift` and paste your API token.
-3. Pick an iOS 17+ simulator or device and press Run.
+3. Pick an iOS 18.6+ simulator or device and press Run.
 4. Run the tests with **⌘U**. They never touch the network.
 
 The API needs `Authorization: Bearer <token>` on every call. The docs say the token is an
