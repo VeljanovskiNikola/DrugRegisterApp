@@ -22,6 +22,12 @@ final class AppRouter {
         push(.savedDrug(snapshot))
     }
 
+    /// From a tapped reminder: My medicines at its first screen, whatever was open before.
+    func showMyMedicines() {
+        selectedTab = .myMedicines
+        medicinesPath.removeAll()
+    }
+
     /// From the empty My medicines screen: find a drug to add.
     func showSearch() {
         selectedTab = .search

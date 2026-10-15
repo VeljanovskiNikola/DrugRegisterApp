@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import UserNotifications
 
 /// Shared dependencies, created in one place.
 @MainActor
@@ -9,6 +10,8 @@ final class AppEnvironment {
     let favorites: FavoritesStore
     let recentSearchStore: RecentSearchStore
     let medicineServices: MedicineServices
+    /// Kept here because the notification center holds its delegate weakly.
+    let reminderTaps = ReminderTapHandler()
 
     init(
         drugService: any DrugService,
@@ -27,7 +30,7 @@ final class AppEnvironment {
             baseURL: URL(string: "https://drug-register-api.vercel.app")!,
             apiToken: Secrets.apiToken
         )
-        return AppEnvironment(
+        let environment = AppEnvironment(
             drugService: LiveDrugService(apiClient: apiClient),
             favorites: FavoritesStore(fileURL: FavoritesStore.defaultFileURL()),
             recentSearchStore: RecentSearchStore(),
@@ -36,6 +39,9 @@ final class AppEnvironment {
                 scheduler: UserNotificationScheduler()
             )
         )
+        // Set while the app starts, so a tap that launched the app is not missed.
+        UNUserNotificationCenter.current().delegate = environment.reminderTaps
+        return environment
     }
 }
 

@@ -42,6 +42,7 @@ struct RootView: View {
         .environment(environment.favorites)
         // Prices and numbers in `Text` follow this, not the device language.
         .environment(\.locale, .app)
+        .task { environment.reminderTaps.connect { router.showMyMedicines() } }
         // iOS keeps only 64 pending reminders. Fired ones make room, so later ones are added here.
         .onChange(of: scenePhase) { _, phase in
             guard phase == .active else { return }

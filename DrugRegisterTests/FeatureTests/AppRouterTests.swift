@@ -75,3 +75,20 @@ struct AppRouterTests {
         #expect(router.searchPath == [.drugDetail(.sample)])
     }
 }
+
+@MainActor
+struct AppRouterMyMedicinesTests {
+
+    @Test
+    func showMyMedicinesSelectsTheTabAndGoesBackToItsRoot() {
+        let router = AppRouter()
+        router.selectedTab = .myMedicines
+        router.showDrug(.sample)
+        router.selectedTab = .settings
+
+        router.showMyMedicines()
+
+        #expect(router.selectedTab == .myMedicines)
+        #expect(router.medicinesPath.isEmpty)
+    }
+}
