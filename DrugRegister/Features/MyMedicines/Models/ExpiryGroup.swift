@@ -33,11 +33,6 @@ struct ExpirySection: Identifiable, Hashable, Sendable {
     var id: ExpiryGroup { group }
 }
 
-struct ExpirySummary: Hashable, Sendable {
-    let expired: Int
-    let within30Days: Int
-}
-
 /// The rules for groups, sorting and labels. `today` is always passed in, so tests never
 /// depend on the real date.
 enum ExpiryRules {
@@ -75,13 +70,6 @@ enum ExpiryRules {
             let inGroup = entries.filter { $0.group == group }
             return inGroup.isEmpty ? nil : ExpirySection(group: group, entries: inGroup)
         }
-    }
-
-    static func summary(for sections: [ExpirySection]) -> ExpirySummary {
-        func count(_ group: ExpiryGroup) -> Int {
-            sections.first { $0.group == group }?.entries.count ?? 0
-        }
-        return ExpirySummary(expired: count(.expired), within30Days: count(.within30Days))
     }
 
     /// "Истекува денес", "За 12 дена", "Истечен пред 3 недели".

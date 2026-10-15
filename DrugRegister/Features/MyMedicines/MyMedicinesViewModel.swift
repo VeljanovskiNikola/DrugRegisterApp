@@ -22,10 +22,6 @@ final class MyMedicinesViewModel {
         ExpiryRules.sections(for: medicines, today: services.today, calendar: services.calendar)
     }
 
-    var summary: ExpirySummary {
-        ExpiryRules.summary(for: sections)
-    }
-
     /// Only worth showing when there is something to remind about.
     var showsPermissionWarning: Bool {
         permission == .denied && !medicines.isEmpty

@@ -1,50 +1,6 @@
 {
   "sourceLanguage" : "mk",
   "strings" : {
-    "%lld expire within 30 days" : {
-      "localizations" : {
-        "mk" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld истекува за 30 дена"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld истекуваат за 30 дена"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "%lld expired" : {
-      "localizations" : {
-        "mk" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld истечен"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld истечени"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "%lld packs" : {
       "localizations" : {
         "mk" : {
@@ -124,7 +80,7 @@
         "mk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Додај во мои лекови"
+            "value" : "Додади во мои лекови"
           }
         }
       }
@@ -750,7 +706,7 @@
         "mk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пронајдете лек во Пребарај и допрете „Додај во мои лекови“. Ќе видите кои пакувања први истекуваат и ќе добиете потсетник пред тоа."
+            "value" : "Пронајдете лек во Пребарај и допрете „Додади во мои лекови“. Ќе видите кои пакувања први истекуваат и ќе добиете потсетник пред тоа."
           }
         }
       }
@@ -1187,16 +1143,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Белешка"
-          }
-        }
-      }
-    },
-    "Nothing expires in the next 30 days" : {
-      "localizations" : {
-        "mk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ништо не истекува во наредните 30 дена"
           }
         }
       }

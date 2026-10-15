@@ -74,7 +74,7 @@ struct ExpiryRulesTests {
         #expect(exact.contains("31"))
     }
 
-    // MARK: - Sorting and summary
+    // MARK: - Sorting
 
     @Test
     func sectionsAreInGroupOrderAndSoonestFirst() {
@@ -91,20 +91,6 @@ struct ExpiryRulesTests {
         #expect(sections.map(\.group) == [.expired, .within30Days, .later])
         #expect(sections[1].entries.map(\.medicine.drug.nameLatin) == ["FIRST", "SOON A", "SOON B"])
         #expect(sections[0].entries.first?.daysLeft == -39)
-    }
-
-    @Test
-    func summaryCountsExpiredAndSoon() {
-        let medicines = [
-            Medicine.make(expiry: day(2026, 1, 1)),
-            Medicine.make(expiry: day(2026, 10, 1)),
-            Medicine.make(expiry: day(2026, 10, 30)),
-            Medicine.make(expiry: day(2030, 1, 1)),
-        ]
-
-        let sections = ExpiryRules.sections(for: medicines, today: today, calendar: calendar)
-
-        #expect(ExpiryRules.summary(for: sections) == ExpirySummary(expired: 2, within30Days: 1))
     }
 
     // MARK: - Labels

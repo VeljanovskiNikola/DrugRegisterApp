@@ -104,15 +104,16 @@ struct MyMedicinesView: View {
 
     private var list: some View {
         List {
-            Section {
-                summary
-                if viewModel.showsPermissionWarning {
-                    permissionWarning
-                }
-                if let message = viewModel.errorMessage {
-                    Label(message, systemImage: "exclamationmark.circle")
-                        .font(.appSubheadline)
-                        .foregroundStyle(.appCritical)
+            if viewModel.showsPermissionWarning || viewModel.errorMessage != nil {
+                Section {
+                    if viewModel.showsPermissionWarning {
+                        permissionWarning
+                    }
+                    if let message = viewModel.errorMessage {
+                        Label(message, systemImage: "exclamationmark.circle")
+                            .font(.appSubheadline)
+                            .foregroundStyle(.appCritical)
+                    }
                 }
             }
 
@@ -121,11 +122,9 @@ struct MyMedicinesView: View {
                     ForEach(section.entries) { entry in
                         row(for: entry)
                     }
-                } header: {
-                    Text(section.group.title)
                 }
             }
-
+            
             Section {
             } footer: {
                 Text("Check the package or ask a pharmacist.")
@@ -188,36 +187,6 @@ struct MyMedicinesView: View {
             .padding(.horizontal, .spacingMedium)
             .padding(.bottom, .spacingSmall)
             .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
-        }
-    }
-
-    // MARK: - Summary
-
-    /// Two separate texts, each with its own plural form, instead of one sentence built from pieces.
-    @ViewBuilder
-    private var summary: some View {
-        let summary = viewModel.summary
-        if summary.expired == 0 && summary.within30Days == 0 {
-            Label("Nothing expires in the next 30 days", systemImage: "checkmark.circle")
-                .font(.appSubheadline)
-                .foregroundStyle(.appSecondaryText)
-        } else {
-            HStack(spacing: .spacingSmall) {
-                if summary.expired > 0 {
-                    TagBadge(
-                        text: String(localized: "\(summary.expired) expired"),
-                        tone: .critical,
-                        systemImage: ExpiryGroup.expired.systemImage
-                    )
-                }
-                if summary.within30Days > 0 {
-                    TagBadge(
-                        text: String(localized: "\(summary.within30Days) expire within 30 days"),
-                        tone: .warning,
-                        systemImage: ExpiryGroup.within30Days.systemImage
-                    )
-                }
-            }
         }
     }
 

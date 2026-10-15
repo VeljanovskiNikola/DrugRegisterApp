@@ -32,7 +32,6 @@ struct MyMedicinesViewModelTests {
         #expect(viewModel.hasLoaded)
         #expect(viewModel.sections.map(\.group) == [.expired, .within30Days, .later])
         #expect(viewModel.sections[0].entries.first?.daysLeft == -21)
-        #expect(viewModel.summary == ExpirySummary(expired: 1, within30Days: 1))
     }
 
     @Test
